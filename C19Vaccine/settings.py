@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'C19V.apps.C19VConfig'
+    'C19V.apps.C19VConfig',
+    'phone_field',
 ]
 
 MIDDLEWARE = [
