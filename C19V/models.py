@@ -5,6 +5,8 @@ from phone_field import PhoneField
 
 class VaccinatedPerson(models.Model):
     name = models.CharField(verbose_name='Name',max_length=100,help_text=('Name of the Vaccinated Person'))
+    GENDER_CHOICES = (('M','Male'),('F','Female'))
+    gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
     dob = models.DateField(verbose_name='Date of Birth')
     phone_no = PhoneField(help_text=("Contact phone number"))
     date_created = models.DateTimeField(auto_now_add=True)
