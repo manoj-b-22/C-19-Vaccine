@@ -1,16 +1,15 @@
 from django.db import models
 from django.utils import timezone
-from phone_field import PhoneField 
 # Create your models here.
 
-class Centre(models.Model):
-    name = models.CharField(verbose_name="Name",max_length=50,help_text=('Name of the Vaccination Centre'))
-    phone_no = PhoneField(help_text=('Contact number'))
-    address = models.TextField(max_length=128,help_text=('Address'))
-    city = models.CharField(max_length=10,help_text=('City'))
-    state = models.CharField(max_length=10,help_text=('State'))
-    pincode = models.CharField(max_length=6,help_text=('Pincode'))
-    active_time_from = models.TimeField(help_text=('Active From'))
+class TestCentre(models.Model):
+    name = models.CharField(verbose_name="Name",max_length=50)
+    phone_no =models.CharField(max_length=10)
+    address = models.TextField(max_length=128)
+    city = models.CharField(max_length=10)
+    state = models.CharField(max_length=10)
+    pincode = models.CharField(max_length=6)
+    active_time_from = models.TimeField(help_text=('From'))
     active_time_to = models.TimeField(help_text=('To'))
 
     def __str__(self):
@@ -21,12 +20,12 @@ class VaccinatedPerson(models.Model):
 
     GENDER_CHOICES = (('M','Male'),('F','Female'))
 
-    name = models.CharField(verbose_name='Name',max_length=50,help_text=('Name of the Vaccinated Person'))
+    name = models.CharField(verbose_name='Name',max_length=50)
     gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
-    dob = models.DateField(verbose_name='Date of Birth')
-    phone_no = PhoneField(help_text=("Contact phone number"))
+    dob = models.DateField()
+    phone_no =models.CharField(max_length=10)
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.ForeignKey(Centre,on_delete=models.CASCADE)
+    centre = models.ForeignKey(TestCentre,on_delete=models.CASCADE)
 
     @property
     def age(self):

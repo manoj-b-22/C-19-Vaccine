@@ -5,4 +5,4 @@ from . import models
 
 admin.site.register(models.VaccinatedPerson)
 
-admin.site.register(models.Centre)
+admin.site.register(models.TestCentre)

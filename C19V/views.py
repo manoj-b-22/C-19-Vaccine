@@ -8,7 +8,7 @@ from . import forms
 
 
 def home(request):
-    return render(request,'login.html')
+    return render(request,'home.html')
 
 def centres(request):
     return render(request,'vaccinationcentre.html')    
@@ -20,7 +20,7 @@ def createPerson(request):
         form = forms.PersonForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home')
 
     dictionary = {'form': form}
-    return render(request,'',dictionary)        
+    return render(request,'createperson.html',dictionary)        
