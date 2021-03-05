@@ -3,24 +3,6 @@ from django.utils import timezone
 from phone_field import PhoneField 
 # Create your models here.
 
-class VaccinatedPerson(models.Model):
-
-    GENDER_CHOICES = (('M','Male'),('F','Female'))
-
-    name = models.CharField(verbose_name='Name',max_length=50,help_text=('Name of the Vaccinated Person'))
-    gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
-    dob = models.DateField(verbose_name='Date of Birth')
-    phone_no = PhoneField(help_text=("Contact phone number"))
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    @property
-    def age(self):
-        return timezone.now().year - self.dob.year
-
-    def __str__(self):
-        return self.name    
-
-
 class Centres(models.Model):
     name = models.CharField(verbose_name="Name",max_length=50,help_text=('Name of the Vaccination Centre'))
     phone_no = PhoneField(help_text=('Contact number'))
@@ -34,3 +16,21 @@ class Centres(models.Model):
     def __str__(self):
         return self.name
     
+
+class VaccinatedPerson(models.Model):
+
+    GENDER_CHOICES = (('M','Male'),('F','Female'))
+
+    name = models.CharField(verbose_name='Name',max_length=50,help_text=('Name of the Vaccinated Person'))
+    gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
+    dob = models.DateField(verbose_name='Date of Birth')
+    phone_no = PhoneField(help_text=("Contact phone number"))
+    date_created = models.DateTimeField(auto_now_add=True)
+    centre = models.ForeignKey(Centres,on_delete=models.CASCADE)
+
+    @property
+    def age(self):
+        return timezone.now().year - self.dob.year
+
+    def __str__(self):
+        return self.name    
