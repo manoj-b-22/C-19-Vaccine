@@ -5,15 +5,7 @@ from django.http import HttpResponse
 
 
 def home(request):
-<<<<<<< HEAD
-    return render(request, 'login.html')
-
+    return render(request,'login.html')
 
 def centres(request):
-    return render(request, 'vaccinationcentre.html')
-=======
-    return render(request,'home.html')
-
-def centre(request):
     return render(request,'vaccinationcentre.html')    
->>>>>>> dbf396d85f150b293b06583fbe6cc04a85cf8aeb
