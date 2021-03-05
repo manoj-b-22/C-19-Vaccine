@@ -3,7 +3,7 @@ from django.utils import timezone
 from phone_field import PhoneField 
 # Create your models here.
 
-class Centres(models.Model):
+class Centre(models.Model):
     name = models.CharField(verbose_name="Name",max_length=50,help_text=('Name of the Vaccination Centre'))
     phone_no = PhoneField(help_text=('Contact number'))
     address = models.TextField(max_length=128,help_text=('Address'))
@@ -26,7 +26,7 @@ class VaccinatedPerson(models.Model):
     dob = models.DateField(verbose_name='Date of Birth')
     phone_no = PhoneField(help_text=("Contact phone number"))
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.ForeignKey(Centres,on_delete=models.CASCADE)
+    centre = models.ForeignKey(Centre,on_delete=models.CASCADE)
 
     @property
     def age(self):
