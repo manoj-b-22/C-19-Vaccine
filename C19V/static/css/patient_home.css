@@ -2,7 +2,7 @@ body {
     margin-top: 20px;
     color: #1a202c;
     text-align: left;
-    background-color: #b7c539;
+    background-color:silver;
 }
 
 .main-body {
@@ -19,7 +19,7 @@ body {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: rgb(101, 164, 216);
+    background-color: white;
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
