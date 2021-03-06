@@ -16,6 +16,12 @@ def health(request):
 def stats(request):
     return render(request,'statistics.html')
 
+def dashboard(request):
+    return render(request,'vc_home.html')
+
+def report(request):
+    return render(request,'vc_report.html')    
+
 def createPerson(request):
     form = forms.PersonForm()
 
