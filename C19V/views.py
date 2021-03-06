@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 from . import models
 from . import forms
@@ -27,7 +28,6 @@ def dashboard(request):
 
 def Login(request):
     return render(request, 'login.html')
-
 
 def LoginVC(request):
 
@@ -65,7 +65,7 @@ def registerVC(request):
 def report(request):
     return render(request, 'vc_report.html')
 
-
+#@login_required(login_url='loginvc')
 def createPerson(request):
     form = forms.PersonForm()
 
