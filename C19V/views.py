@@ -1,6 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 
 from . import models
 from . import forms
@@ -25,12 +25,28 @@ def dashboard(request):
     return render(request, 'vc_home.html')
 
 
-def login(request):
+def Login(request):
     return render(request, 'login.html')
 
 
-def loginVC(request):
+def LoginVC(request):
+
+    if request.method =='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username=username,password=password)
+
+        if user is not None:
+            login(request,user)
+            return redirect('vc_home.html')
+        else:
+            messages.info(request,'Username or Password is incorrect')    
+
     return render(request, 'vaccinationcentre.html')
+
+def LogoutVC(request):
+    logout(request)
+    return redirect('loginvc')    
 
 def registerVC(request):
     form = forms.CreateUserForm()
@@ -39,6 +55,9 @@ def registerVC(request):
         form = forms.CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request,'Account successfully created for '+user)
+            return redirect('loginvc')
 
     context={ 'form':form }
     return render(request,'vc_register.html',context)
@@ -54,7 +73,7 @@ def createPerson(request):
         form = forms.PersonForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('report')
 
     dictionary = {'form': form}
     return render(request, 'createperson.html', dictionary)

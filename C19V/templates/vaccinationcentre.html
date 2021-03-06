@@ -23,7 +23,7 @@
           <a  href="{% url 'login' %}" class="btn btn-lg btn-primary btn-block">Patient</a>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
-          <a href="" class="btn btn-lg btn-info btn-block">Vaccination Centres</a> <! -- Should we go back if we press patient??-->
+          <a href="" class="btn btn-lg btn-info btn-block">Vaccination Centres </a> <! -- Should we go back if we press patient??-->
         </div>
       </div>
       <div class="login-or">
@@ -31,15 +31,16 @@
       </div>
 
       <div class="login">
-        <form role="form">
+        <form role="form" method='POST' action='' >
+          {% csrf_token %}
           <div class="form-group">
             <label for="inputUsernameEmail">Username</label>
-            <input type="text" class="form-control" id="inputUsernameEmail">
+            <input type="text" name='username' class="form-control" id="inputUsernameEmail">
           </div>
           <div class="form-group">
             <a class="pull-right" href="#">Forgot password?</a>
             <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="password" name='password' class="form-control" id="inputPassword">
           </div>
           <div class="checkbox pull-right">
             <label>
@@ -54,13 +55,14 @@
       
       <div class="signupbox sin ">
 
-        <form role="form">
+        <form role="form" method="POST" action='' >
+          {% csrf_token %}
           <div class="form-group">
             <label for="inputUsernameEmail">Username</label>
             <input type="text" class="form-control" id="inputUsernameEmail">
           </div>
           <div class="form-group">
-            <label for="inputEmail">email</label>
+            <label for="inputEmail">Email</label>
             <input type="email" class="form-control" id="inputEmail">
           </div>
           <div class="form-group">
