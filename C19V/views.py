@@ -8,10 +8,13 @@ from . import forms
 
 
 def home(request):
-    return render(request,'home.html')
+    return render(request,'patient_home.html')
 
-def centres(request):
-    return render(request,'vaccinationcentre.html')    
+def health(request):
+    return render(request,'patient_health.html')
+
+def stats(request):
+    return render(request,'statistics.html')
 
 def createPerson(request):
     form = forms.PersonForm()
