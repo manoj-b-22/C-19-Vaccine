@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+<body>
+  
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="row">
+
+    <div class="main">
+      <br>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <a href="#" class="btn btn-lg btn-primary btn-block">Vaccination Centre</a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <a  href="{% url 'login' %}" class="btn btn-lg btn-info btn-block">Patient</a>  <! -- Should we go back if we press patient??-->
+        </div>
+      </div>
+      <div class="login-or">
+        <hr class="hr-or">
+      </div>
+
+      <div class="login">
+        <form role="form">
+          <div class="form-group">
+            <label for="inputUsernameEmail">Username</label>
+            <input type="text" class="form-control" id="inputUsernameEmail">
+          </div>
+          <div class="form-group">
+            <a class="pull-right" href="#">Forgot password?</a>
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <div class="checkbox pull-right">
+            <label>
+              <input type="checkbox">
+              Remember me </label>
+          </div>
+          <button type="submit" class="btn btn btn-primary">
+            Log In
+          </button>
+        </form>
+
+      </div>
+      
+      <div class="signupbox sin ">
+
+        <form role="form">
+          <div class="form-group">
+            <label for="inputUsernameEmail">Username</label>
+            <input type="text" class="form-control" id="inputUsernameEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">email</label>
+            <input type="email" class="form-control" id="inputEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <button type="submit" class="btn btn btn-primary">
+            Sign Up
+          </button>
+        </form>
+
+      </div>
+
+      <div class="switch">
+        <p class="switch_text">Create an account?</p> <span class="switch_button">Sign up</span>
+      </div>
+
+
+    </div>
+    
+  </div>
+</div>
+
+
+<script src="{% static 'js/login.js' %}" ></script>
+</body>
+</html>
