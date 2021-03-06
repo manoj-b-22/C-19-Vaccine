@@ -15,23 +15,26 @@
         <div class="container">
   <div class="row">
 
-    <div class="main">
+    <h2 id="helo">Hello There!</h2>
 
-      <h3>Please Log In, or <a href="#">Sign Up</a></h3>
+    <div class="main">
+      <br>
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
           <a href="#" class="btn btn-lg btn-primary btn-block">Patient</a>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
-          <a href="{% url 'centres' %}" class="btn btn-lg btn-info btn-block">Vaccination centres</a>
+          <a href="{% url 'loginvc' %}" class="btn btn-lg btn-info btn-block">Vaccination Centres</a>
         </div>
       </div>
-
+      <div class="login-or">
+        <hr class="hr-or">
+      </div>
 
       <form role="form">
         <div class="form-group">
           <label for="phone_no">Mobile Number</label>
-          <input type="tel" class="form-control" id="phone_no">
+          <input type="text" class="form-control" id="phone_no">
         </div>
         <div class="form-group">
           <label for="dob">Date of Birth</label>
@@ -47,7 +50,7 @@
         </button>
       </form>
       <h3>Not yet Vaccinated?</h3>
-              <a href="#" class="btn btn-lg btn-danger btn-block">NearBy Vaccination Centre</a>
+              <a href="#" class="btn btn-lg btn-info btn-block">NearBy Vaccination Centre</a>
     </div>
     
   </div>
