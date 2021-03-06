@@ -5,32 +5,39 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/patient_home.css'%}">
 <centre>
-  <div class="row gutters-sm">
-    <div class="col-md-4 mb-3">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex flex-column align-items-center text-center">
-            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-            <div class="mt-3">
-              <h1>Patient details </h1>
-            </div>  
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</centre>
-
-<centre>
-  <div class="col-md-8">
+  <div class="container-md-8">
     <div class="card mb-3">
       <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+          <div class="mt-3">
+            <h1>PATIENT DETAILS</h1>
+          </div>  
+        </div>
         <div class="row">
           <div class="col-sm-3">
             <h6 class="mb-0">Full Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             displays patient name 
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Gender</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            Male or female
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Date of Birth</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            displays DOB
           </div>
         </div>
         <hr>
@@ -45,33 +52,32 @@
         <hr>
         <div class="row">
           <div class="col-sm-3">
-            <h6 class="mb-0">Gender</h6>
+            <h6 class="mb-0">Place</h6>
           </div>
-            <div class="col-sm-9 text-secondary">
-              Male or female or others
-            </div>
+          <div class="col-sm-9 text-secondary">
+            hyderabad
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Vaccinated Place</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              hyderabad
-            </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Vaccination Centre</h6>
           </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0">Vaccination Centre Address</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-              mig-78/9 hyd
-            </div>
+          <div class="col-sm-9 text-secondary">
+            Vaccination centre name
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Previous Status</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            Fine/Danger
           </div>
         </div>
       </div>
     </div>
-  </div>   
+  </div>  
 </centre>
 {% endblock %}
