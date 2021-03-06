@@ -1,25 +1,22 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">=</a>
+  <a class="navbar-brand" href="#">C19Vaccine</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'home' %}">Home </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Near by vaccination centres</a>
+      <li class="nav-item {% if nbar == 'health' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'health' %}">Health Report of an Individual </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'health' %}">health report of an individual</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'stats' %}">statistics of vaccinated people</a>
-      </li>
-      
+      <li class="nav-item {% if nbar == 'stats' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'stats' %}">Statistics of Vaccinated People </a>
+      </li> 
     </ul>
   </div>
 </nav>

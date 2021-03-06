@@ -7,13 +7,16 @@ from . import forms
 
 
 def home(request):
-    return render(request,'patient_home.html')
+    context = {'nbar':'home'}
+    return render(request,'patient_home.html',context)
 
 def health(request):
-    return render(request,'patient_health.html')
+    context = {'nbar':'health'}
+    return render(request,'patient_health.html',context)
 
 def stats(request):
-    return render(request,'statistics.html')
+    context = {'nbar':'stats'}
+    return render(request,'statistics.html',context)
 
 def dashboard(request):
     return render(request,'vc_home.html')
