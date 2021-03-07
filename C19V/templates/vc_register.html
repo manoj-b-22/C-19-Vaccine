@@ -1,9 +1,67 @@
-<h3>Register</h3>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-19 Vaccine</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+<body>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<form action='' method='POST'>
-    {% csrf_token %}
 
-    {{form.as_p}}
+  <div class="container">
+    <div class="row">
+      <div class="main">
+      <br>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <a href="" class="btn btn-lg btn-info btn-block">Vaccination Centres </a> 
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <a  href="{% url 'login' %}" class="btn btn-lg btn-primary btn-block">Patient</a>
+        </div>
+      </div>
+      <div class="login-or">
+        <hr class="hr-or">
+      </div>
 
-    <input type='submit' name='Submit'>
-</form>
+      <div class="signupbox">
+
+        <form role="form" method="POST" action='' >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="inputUsernameEmail">Username</label>
+            <input type="text" class="form-control" id="inputUsernameEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+          </div>
+          <button type="submit" class="btn btn btn-primary">
+            Sign Up
+          </button>
+        </form>
+
+    </div>
+      <div>
+        
+      <h3>Already have an account?</h3>
+      <a href="{% url 'loginvc' %}">Log In</a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
