@@ -1,3 +1,9 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
 body {
     background-color: #eff0f1;
 }
@@ -5,17 +11,17 @@ body {
 #total-vaccinations {
     height: 200px;
     margin-top: 50px;
-    background-color: #c7a04c;
+    background-color: #4faace;
 }
 
 #successful-vaccinations {
     height: 200px;
     margin-top: 50px;
-    background-color: #4faace;
+    background-color: 	#006400;
 }
 
 #unsuccessful-vaccinations {
     margin-top: 50px;
     height: 200px;
-    background-color: #d17c7c;
+    background-color: #8b0000;
 }
