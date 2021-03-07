@@ -12,10 +12,17 @@ from . import forms
 def home(request,pk):
     
     person = models.VaccinatedPerson.objects.get(id=pk)
-
     status = models.Status.objects.filter(person=person).last()
 
-    context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status}
+    green = models.Status.objects.filter(status='Good').count()
+    yellow = models.Status.objects.filter(status='Ok').count()
+    red = models.Status.objects.filter(status='Bad').count()
+
+    green = int((green/14)*100)
+    yellow = (int(yellow/14)*100)
+    red = int((red/14)*1000)
+
+    context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status,'green':green,'red':red,'yellow':yellow}
     return render(request, 'patient_home.html', context)
 
 def health(request,pk):
