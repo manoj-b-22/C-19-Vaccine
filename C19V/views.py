@@ -10,24 +10,32 @@ from . import forms
 
 
 def home(request):
-    context = {'nbar': 'home'}
+    context = {'nbar': 'home' , 'block':'Patient'}
     return render(request, 'patient_home.html', context)
 
 def health(request):
-    context = {'nbar': 'health'}
+    context = {'nbar': 'health' , 'block':'Patient'}
     return render(request, 'patient_health.html', context)
 
 def stats(request):
-    context = {'nbar': 'stats'}
+    context = {'nbar': 'stats' , 'block':'Patient'}
     return render(request, 'statistics.html', context)
 
 
 def dashboard(request):
-    return render(request, 'vc_home.html')
+    context = {'nbar': 'dashboard' , 'block':'VC'}
+    return render(request, 'vc_home.html',context)
 
+def report(request):
+    context = {'nbar': 'report' , 'block':'VC'}
+    return render(request, 'vc_report.html',context)    
+
+def statsVC(request):
+    context = {'nbar': 'statsVC' , 'block':'VC'}
+    return render(request, 'stats.html',context)  
 
 def Login(request):
-    return render(request, 'login.html')
+    return render(request, 'patient_login.html')
 
 def LoginVC(request):
 
@@ -41,7 +49,7 @@ def LoginVC(request):
         else:
             messages.info(request,'Username or Password is incorrect')    
 
-    return render(request, 'vaccinationcentre.html')
+    return render(request, 'vc_login.html')
 
 def LogoutVC(request):
     logout(request)
@@ -60,9 +68,6 @@ def registerVC(request):
 
     context={ 'form':form }
     return render(request,'vc_register.html',context)
-
-def report(request):
-    return render(request, 'vc_report.html')
 
 #@login_required(login_url='loginvc')
 def createPerson(request):
