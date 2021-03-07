@@ -10,6 +10,7 @@ urlpatterns = [
     path('vc/statistics/<str:pk>/', views.statsVC, name='statsVC'),
     path('login/', views.Login, name="login"),
     path('vc/login/', views.LoginVC, name="loginvc"),
-    path('create_person/', views.createPerson, name="create_person"),
     path('vc/register/', views.registerVC, name='registervc'),
+    path('create_person/', views.createPerson, name="create_person"),
+    path('healthreport/<str:pk>/addstatus',views.createStatus,name='create_status')
 ]

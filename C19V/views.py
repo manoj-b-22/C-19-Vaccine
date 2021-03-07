@@ -21,9 +21,25 @@ def home(request,pk):
 def health(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
+    status = models.Status.objects.all()
+    last = models.Status.objects.filter(person=person).last()
 
-    context = {'nbar': 'health' , 'block':'Patient','person':person}
+    context = {'nbar': 'health' , 'block':'Patient','person':person,'status':status,'last':last}
     return render(request, 'patient_health.html', context)
+
+def createStatus(request,pk):
+
+    person = models.VaccinatedPerson.objects.get(id=pk)   
+
+    if request.method=='POST':
+        form = forms.StatusForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('health',pk=pk)
+
+    form = forms.StatusForm() 
+    context={'form':form,}
+    return render(request,'createstatus.html',context)        
 
 def stats(request,pk):
 
