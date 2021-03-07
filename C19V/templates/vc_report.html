@@ -34,7 +34,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="unsuccessful-vaccinations">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Risk</h5>
+			  		<h5 class="card-title">Vaccination Unsuccessful</h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{unsuccessfull}}</h3>
@@ -52,13 +52,14 @@
 			<a class="btn btn-primary  btn-sm btn-block" href="">Search for patient details</a>
 			<table class="table table-sm">
 				<tr>
+					<th></th>
 					<th>Patient name</th>
-		
+					
 				</tr>
 
 				{% for patient in patients %}
 					<tr>
-
+						<td><a href="">View</a></td>	
 						<td>{{patient.name}}</td>
 						
 					</tr>
@@ -86,9 +87,9 @@
 					<tr>
 						<td>{{patient.name}}</td>
 						<td>{{patient.gender}}</td>
-						<td>{{patinet.dob}}</td>
-                        <td>{{patinet.phone_no}}</td>
-                        <td>{{patinet.date_created}}</td>
+						<td>{{patient.dob}}</td>
+                        <td>{{patient.phone_no}}</td>
+                        <td>{{patient.date_created}}</td>
 						
 
 					</tr>

@@ -3,19 +3,19 @@ body {
 }
 
 #total-vaccinations {
-    height: 100px;
+    height: 200px;
     margin-top: 50px;
     background-color: #c7a04c;
 }
 
 #successful-vaccinations {
-    height: 100px;
+    height: 200px;
     margin-top: 50px;
-    background-color: #7abecc;
+    background-color: #4faace;
 }
 
 #unsuccessful-vaccinations {
     margin-top: 50px;
-    height: 100px;
-    background-color: #7CD1C0;
+    height: 200px;
+    background-color: #d17c7c;
 }
