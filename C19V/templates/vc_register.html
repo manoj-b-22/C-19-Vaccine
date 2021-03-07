@@ -14,16 +14,21 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
-  <div class="container">
+  <div class="container" style="margin-top:3%;width:30%;font-family:sans-serif;">
+    <div class="row">
+      <div class="col-4 mx-auto text-center">
+        <img src="{% static '/images/corona1.jpeg' %}" class="rounded-circle" alt="Corona1" width="150" height="150">
+      </div>
+    </div>
     <div class="row">
       <div class="main">
       <br>
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-            <a href="" class="btn btn-lg btn-info btn-block">Vaccination Centres </a> 
+            <a href="" style="background-color:black;" class="btn btn-lg btn-info btn-block">Vaccination Centres </a> 
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6">
-          <a  href="{% url 'login' %}" class="btn btn-lg btn-primary btn-block">Patient</a>
+          <a  href="{% url 'login' %}" style="background-color:#696969;"class="btn btn-lg btn-primary btn-block">Patient</a>
         </div>
       </div>
       <div class="login-or">
@@ -46,7 +51,7 @@
             <label for="inputPassword">Password</label>
             <input type="password" class="form-control" id="inputPassword">
           </div>
-          <button type="submit" class="btn btn btn-primary">
+          <button type="submit" style="background-color:black;"class="btn btn btn-primary">
             Sign Up
           </button>
         </form>
