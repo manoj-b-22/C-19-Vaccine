@@ -2,7 +2,103 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/vc_report.css'%}">
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-vaccinations">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total number of Vaccinated People</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{vaccinations}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
 
-<h1>Report of Vaccinated People</h1>
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="successful-vaccinations">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Vaccination Successful</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{successful}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="unsuccessful-vaccinations">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Risk</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{unsuccessfull}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>PATIENTS:</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Search for patient details</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Patient name</th>
+		
+				</tr>
+
+				{% for patient in patients %}
+					<tr>
+
+						<td>{{patient.name}}</td>
+						
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>LAST 5 Vaccinated people</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="">Add a person</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Name</th>
+					<th>Gender</th>
+					<th>Date of birth</th>
+					<th>Phone Number</th>
+					<th>Vaccinated date</th>
+				</tr>
+
+				{% for patient in patients %}
+					<tr>
+						<td>{{patient.name}}</td>
+						<td>{{patient.gender}}</td>
+						<td>{{patinet.dob}}</td>
+                        <td>{{patinet.phone_no}}</td>
+                        <td>{{patinet.date_created}}</td>
+						
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
 
 {% endblock %}
