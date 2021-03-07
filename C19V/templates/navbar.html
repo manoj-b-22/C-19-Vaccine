@@ -11,25 +11,25 @@
       {% if block == 'Patient' %}
        
       <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'home' %}">Home </a>
+        <a class="nav-link" href="{% url 'home' person.id %}">Home </a>
       </li>
       <li class="nav-item {% if nbar == 'health' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'health' %}">Health Report of an Individual </a>
+        <a class="nav-link" href="{% url 'health' person.id %}">Health Report of an Individual </a>
       </li>
       <li class="nav-item {% if nbar == 'stats' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'stats' %}">Statistics of Vaccinated People </a>
+        <a class="nav-link" href="{% url 'stats' person.id %}">Statistics of Vaccinated People </a>
       </li> 
 
       {% else %}
 
       <li class="nav-item {% if nbar == 'dashboard' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'dashboard' %}"> Dashboard </a>
+        <a class="nav-link" href="{% url 'dashboard' person.id %}"> Dashboard </a>
       </li>
       <li class="nav-item {% if nbar == 'report' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'report' %}"> Report </a>
+        <a class="nav-link" href="{% url 'report' person.id %}"> Report </a>
       </li>
       <li class="nav-item {% if nbar == 'statsVC' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'statsVC' %}">Statistics </a>
+        <a class="nav-link" href="{% url 'statsVC' person.id %}">Statistics </a>
       </li> 
 
       {% endif %}

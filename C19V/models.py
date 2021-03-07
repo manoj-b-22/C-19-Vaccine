@@ -35,4 +35,12 @@ class VaccinatedPerson(models.Model):
     def __str__(self):
         return self.name    
 
+class Status(models.Model):
+    STATUS = (('Good','Feeling good'),('Ok','Feeling some what good'),('Bad','Feeling Bad'))
 
+    status = models.CharField(max_length=4,choices=STATUS)
+    person = models.ForeignKey(VaccinatedPerson,on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.person.name+" "+self.status

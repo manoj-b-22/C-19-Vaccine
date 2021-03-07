@@ -9,29 +9,49 @@ from . import forms
 # Create your views here.
 
 
-def home(request):
-    context = {'nbar': 'home' , 'block':'Patient'}
+def home(request,pk):
+    
+    person = models.VaccinatedPerson.objects.get(id=pk)
+
+    status = models.Status.objects.filter(person=person).last()
+
+    context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status}
     return render(request, 'patient_home.html', context)
 
-def health(request):
-    context = {'nbar': 'health' , 'block':'Patient'}
+def health(request,pk):
+
+    person = models.VaccinatedPerson.objects.get(id=pk)
+
+    context = {'nbar': 'health' , 'block':'Patient','person':person}
     return render(request, 'patient_health.html', context)
 
-def stats(request):
-    context = {'nbar': 'stats' , 'block':'Patient'}
+def stats(request,pk):
+
+    person = models.VaccinatedPerson.objects.get(id=pk)
+
+    context = {'nbar': 'stats' , 'block':'Patient','person':person}
     return render(request, 'statistics.html', context)
 
 
-def dashboard(request):
-    context = {'nbar': 'dashboard' , 'block':'VC'}
+def dashboard(request,pk):
+    
+    person = models.TestCentre.objects.get(id=pk)
+
+    context = {'nbar': 'dashboard' , 'block':'VC','person':person}
     return render(request, 'vc_home.html',context)
 
-def report(request):
-    context = {'nbar': 'report' , 'block':'VC'}
+def report(request,pk):
+
+    person = models.TestCentre.objects.get(id=pk)
+
+    context = {'nbar': 'report' , 'block':'VC','person':person }
     return render(request, 'vc_report.html',context)    
 
-def statsVC(request):
-    context = {'nbar': 'statsVC' , 'block':'VC'}
+def statsVC(request,pk):
+
+    person = models.TestCentre.objects.get(id=pk)
+
+    context = {'nbar': 'statsVC' , 'block':'VC', 'person':person }
     return render(request, 'statistics.html',context)  
 
 def Login(request):

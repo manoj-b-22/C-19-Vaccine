@@ -34,6 +34,11 @@ class TestCentreForm(ModelForm):
             'active_time_to': widgets.AdminTimeWidget(),
         }
 
+class StatusForm(ModelForm):
+    class Meta:
+        model = models.Status
+        fields='__all__'
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
