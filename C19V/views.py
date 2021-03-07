@@ -32,7 +32,7 @@ def report(request):
 
 def statsVC(request):
     context = {'nbar': 'statsVC' , 'block':'VC'}
-    return render(request, 'stats.html',context)  
+    return render(request, 'statistics.html',context)  
 
 def Login(request):
     return render(request, 'patient_login.html')
