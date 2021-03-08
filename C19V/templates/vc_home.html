@@ -19,7 +19,7 @@
             <h6 class="mb-0 pl-4">Vaccination Centre  Name</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            displays Centre name 
+            {{ person.name }}
           </div>
         </div>
         <hr>
@@ -28,7 +28,7 @@
             <h6 class="mb-0 pl-4">Email id</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            displays email.id
+            {{person.email}}
           </div>
         </div>
         <hr>
@@ -37,7 +37,7 @@
             <h6 class="mb-0 pl-4">Phone number</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            +91*******
+            {{person.phone_no}}
           </div>
         </div>
         <hr>
@@ -46,7 +46,7 @@
             <h6 class="mb-0 pl-4">Vaccination Centre Address</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            mig-34/5
+            {{person.address}}
           </div>
         </div>
         <hr>
@@ -55,7 +55,7 @@
             <h6 class="mb-0 pl-4">City</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            hyderabad
+            {{person.city}}
           </div>
         </div>
         <hr>
@@ -64,7 +64,7 @@
             <h6 class="mb-0 pl-4">State</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            Telengana
+            {{person.state}}
           </div>
         </div>
         <hr>
@@ -73,7 +73,7 @@
             <h6 class="mb-0 pl-4">pin code</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            533106
+            {{person.pincode}}
           </div>
         </div>
         <hr>
@@ -82,7 +82,7 @@
             <h6 class="mb-0 pl-4">Opening time</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            9:00 AM
+            {{person.active_time_from}}
           </div>
         </div>
         <hr>
@@ -91,11 +91,10 @@
             <h6 class="mb-0 pl-4">Closing time</h6>
           </div>
           <div class="col-sm-9 pl-4 text-secondary">
-            9:00pm
+            {{person.active_time_to}}
           </div>
         </div>
-        <hr>
-        
+
       </div>
     </div>
   </div>  

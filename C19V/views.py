@@ -28,7 +28,7 @@ def home(request,pk):
 def health(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
-    status = models.Status.objects.all()
+    status = models.Status.objects.filter(person=person)
     last = models.Status.objects.filter(person=person).last()
 
     context = {'nbar': 'health' , 'block':'Patient','person':person,'status':status,'last':last}
@@ -63,12 +63,37 @@ def dashboard(request,pk):
     context = {'nbar': 'dashboard' , 'block':'VC','person':person}
     return render(request, 'vc_home.html',context)
 
-def report(request,pk):
+def report(request,pk,name=''):
 
     person = models.TestCentre.objects.get(id=pk)
+    patients = models.VaccinatedPerson.objects.filter(centre=person).order_by('-date_created')[:5]
 
-    context = {'nbar': 'report' , 'block':'VC','person':person }
+    vaccinations = models.VaccinatedPerson.objects.filter(centre=person).count()
+    success = vaccinations
+    failure = 0
+
+    context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,'failure':failure}
+
+    if request.method=='POST':
+        name = request.POST.get('name')
+        search_patients = models.VaccinatedPerson.objects.filter(name=name)
+        context['search_patients']=search_patients
+
     return render(request, 'vc_report.html',context)    
+
+def search(request,pk):
+
+    context = {'pk':pk}
+    return render(request,'searchpatient.html',context) 
+
+def show(request,pk):
+
+   person = models.VaccinatedPerson.objects.get(id=pk)
+   status = models.Status.objects.filter(person=person).last()
+
+   context={'person':person ,'status':status}
+   return render(request,'showpatient.html',context) 
+
 
 def statsVC(request,pk):
 
@@ -79,6 +104,18 @@ def statsVC(request,pk):
 
 def Login(request):
     return render(request, 'patient_login.html')
+
+def createPerson(request,pk):
+
+    if request.method == 'POST':
+        form = forms.PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('report',pk=pk)
+
+    form = forms.PersonForm()        
+    dictionary = {'form': form,}
+    return render(request, 'createperson.html', dictionary)
 
 def LoginVC(request):
 
@@ -113,14 +150,3 @@ def registerVC(request):
     return render(request,'vc_register.html',context)
 
 #@login_required(login_url='loginvc')
-def createPerson(request):
-    form = forms.PersonForm()
-
-    if request.method == 'POST':
-        form = forms.PersonForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('report')
-
-    dictionary = {'form': form}
-    return render(request, 'createperson.html', dictionary)
