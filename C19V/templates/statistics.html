@@ -2,7 +2,57 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="container" style="font-family: sans-serif;"><br>
+    <h1 class="text-center">Statistics</h1>
+    <div class="btn-group" style="margin-top: 2%;float:left;">
+        <div class="dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Day</a>
+                <a class="dropdown-item" href="#">Month</a>
+                <a class="dropdown-item" href="#">Year</a>
+                <a class="dropdown-item" href="#">Over all</a>
+            </div>
+        </div>
+     
+    </div>
+    <div class="btn-group" style="margin-top: 2%;margin-left: 28%;">
+        <div class="dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">City</a>
+                <a class="dropdown-item" href="#">State</a>
+                <a class="dropdown-item" href="#">Country</a>
+            </div>
+        </div>
+    
+    </div>
+    <div class="btn-group" style="margin-top: 2%;float:right;">
+        <div class="dropdown">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Succeed</a>
+                <a class="dropdown-item" href="#">Failure</a>
+    
+            </div>
+        </div>
+    
+    </div>
+      
 
-<h1>Statistics</h1>
+   
+    
+</div>
+
 
 {% endblock %}
