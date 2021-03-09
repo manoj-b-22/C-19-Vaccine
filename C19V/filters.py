@@ -13,4 +13,4 @@ class PersonFilter(django_filters.FilterSet):
     class Meta:
         model=models.VaccinatedPerson
         fields='__all__'
-        exclude=['name','dob','phone_no','date_created','address']
+        exclude=['name','dob','phone_no','date_created','address','centre']

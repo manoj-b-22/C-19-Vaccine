@@ -57,11 +57,17 @@ def stats(request,pk):
 
     people = models.VaccinatedPerson.objects.all()
     myFilter = filters.PersonFilter(request.GET,queryset=people)
-    people = myFilter.qs.count()
+    people = myFilter.qs
 
+    percent=[]
     centres = models.TestCentre.objects.all()
+    for cen in centres:
+        k = people.filter(centre=cen).count()
+        res = int( k/people.count()*100)
+        percent.append(res)
+    people = people.count()        
 
-    context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres}
+    context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres,'percent':percent}
     return render(request, 'statistics.html', context)
 
 

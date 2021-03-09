@@ -31,13 +31,12 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="">City</a>
                 <a class="dropdown-item" href="">State</a>
-                <a class="dropdown-item" href="">Overall</a>
             </div>
         </div>
     </div>
 </div><br><br>
     <form method='GET'>
-        {{filter.form.as_p}}
+        {{filter.form.as_table}}
         <input type='submit' name='Search'>
     </form>
     <h4>{{people}}</h4>
@@ -52,7 +51,7 @@
         <ul class="bars">
             {% for cen in centre %}
             <li>
-                <div class="bar" data-percentage="50"></div><span>{{centre.id}}</span>
+                <div class="bar" data-percentage="{{ percent.forloop.counter }}"></div><span>{{centre.id}}</span>
             </li>
             {% endfor %}
         </ul>
