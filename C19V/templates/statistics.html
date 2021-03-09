@@ -2,45 +2,43 @@
 {% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 <link rel='stylesheet' href="{% static '/css/statistics.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="{% static '/js/statistics.js' %}"></script>
 <div class="container" style="font-family: sans-serif;"><br>
-    <h1 class="text-center">Statistics</h1>
-    <div class="btn-group" style="margin-top: 3%;float:left;">
-        <div class="dropdown">
-            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="">Day</a>
-                <a class="dropdown-item" href="">Month</a>
-                <a class="dropdown-item" href="">Year</a>
-                <a class="dropdown-item" href="">Over all</a>
-            </div>
-        </div>
-    </div>
-    <div class="btn-group" style="margin-top: 3%;margin-left: 28%;">
-        <div class="dropdown">
-            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="">City</a>
-                <a class="dropdown-item" href="">State</a>
-            </div>
-        </div>
-    </div>
-</div><br><br>
-    <form method='GET'>
-        {{filter.form.as_table}}
-        <input type='submit' name='Search'>
-    </form>
-    <h4>{{people}}</h4>
+    <h1 class="text-center">Statistics</h1><br>
 
+    <form method='GET'>
+        <table class="table table-dark table-striped">
+           
+            <tbody>
+                <tr>
+                    <td><label for="gender">&nbsp &nbsp &nbsp Gender : </label>
+                    {{filter.form.gender}}</td>
+                    <td>
+                        <label for="city">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCity :</label>
+                        {{filter.form.city}}
+                    </td>
+                    <td>
+                        <label for="state">State :</label>
+                        {{filter.form.state}}
+                    </td></tr><tr>
+                    <td><label for="start_date">Date-From :</label>
+                        {{filter.form.start_date}}</td>
+                    <td>
+                        <label for="end_date">Date-To :</label>
+                        {{filter.form.end_date}}
+                    </td>
+                    <td><div style="margin-left:17%;"><input type='submit' name='Submit' value="Search" style="width:190px"></input></div>
+                        
+                    </td>
+                </tr></tbody></table>
+    </form>
+    <h4 class="text-center">Search Results: {{people}}</h4>
+</div>
 <div class="container" style="font-family: sans-serif;margin-top: 6%;margin-left: 30%;">
     <div class="chart">
         <ul class="numbers">
@@ -49,11 +47,16 @@
             <li><span>0%</span></li>
         </ul>
         <ul class="bars">
-            {% for cen in centre %}
-            <li>
-                <div class="bar" data-percentage="{{ percent.forloop.counter }}"></div><span>{{centre.id}}</span>
-            </li>
+        {% for cen in centre %}
+            {% for per in percent %}
+                {% if forloop.counter == forloop.parentloop.counter %}
+                    <li>
+                        <div class="bar" data-percentage="{{ per }}"></div><span>Centre {{cen.id}}</span>
+                    </li>
+                {% endif %}
             {% endfor %}
+        {% endfor %}
+
         </ul>
     </div>
 
@@ -61,3 +64,5 @@
 
 
 {% endblock %}
+
+<!---->
