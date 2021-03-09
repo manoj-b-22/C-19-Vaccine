@@ -14,13 +14,15 @@ def home(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     status = models.Status.objects.filter(person=person).last()
 
-    green = models.Status.objects.filter(status='Good').count()
-    yellow = models.Status.objects.filter(status='Ok').count()
-    red = models.Status.objects.filter(status='Bad').count()
+    green = models.Status.objects.filter(person=person).filter(status='Good').count()
+    yellow = models.Status.objects.filter(person=person).filter(status='Ok').count()
+    red = models.Status.objects.filter(person=person).filter(status='Bad').count()
 
-    green = int((green/14)*100)
-    yellow = (int(yellow/14)*100)
-    red = int((red/14)*1000)
+    total = models.Status.objects.filter(person=person).count()
+
+    green = int((green/total)*100)
+    yellow = int((yellow/total)*100)
+    red = int((red/total)*100)
 
     context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status,'green':green,'red':red,'yellow':yellow}
     return render(request, 'patient_home.html', context)
@@ -69,9 +71,16 @@ def report(request,pk,name=''):
     patients = models.VaccinatedPerson.objects.filter(centre=person).order_by('-date_created')[:5]
 
     vaccinations = models.VaccinatedPerson.objects.filter(centre=person).count()
-    success = vaccinations
+    success = 0 
     failure = 0
 
+    for i in models.VaccinatedPerson.objects.filter(centre=person):
+        stat = models.Status.objects.filter(person=i).last()
+        if stat.status == 'Bad':
+            failure+=1
+        else:
+            success+=1  
+             
     context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,'failure':failure}
 
     if request.method=='POST':
