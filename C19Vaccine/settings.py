@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'C19V.apps.C19VConfig',
-    
+    'django_filters',
 ]
 
 MIDDLEWARE = [

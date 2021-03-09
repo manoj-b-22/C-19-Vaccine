@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
+from . import filters
 from . import models
 from . import forms
 
@@ -54,7 +55,11 @@ def stats(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
 
-    context = {'nbar': 'stats' , 'block':'Patient','person':person}
+    people = models.VaccinatedPerson.objects.all()
+    myFilter = filters.PersonFilter(request.GET,queryset=people)
+    people = myFilter.qs.count()
+ 
+    context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people}
     return render(request, 'statistics.html', context)
 
 
@@ -80,9 +85,9 @@ def report(request,pk,name=''):
             failure+=1
         else:
             success+=1  
-             
-    context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,'failure':failure}
 
+    context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,'failure':failure}
+    
     if request.method=='POST':
         name = request.POST.get('name')
         search_patients = models.VaccinatedPerson.objects.filter(name=name)

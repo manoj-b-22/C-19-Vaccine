@@ -25,6 +25,9 @@ class VaccinatedPerson(models.Model):
     gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
     dob = models.DateField()
     phone_no =models.CharField(max_length=10)
+    address = models.TextField(max_length=128)
+    city = models.CharField(max_length=20)
+    state = models.CharField(max_length=10)
     date_created = models.DateTimeField(auto_now_add=True)
     centre = models.ForeignKey(TestCentre,on_delete=models.CASCADE)
 
