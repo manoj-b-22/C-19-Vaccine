@@ -23,13 +23,13 @@
       {% else %}
 
       <li class="nav-item {% if nbar == 'dashboard' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'dashboard' person.id %}"> Dashboard </a>
+        <a class="nav-link" href="{% url 'dashboard' person.id %}"> Home </a>
       </li>
       <li class="nav-item {% if nbar == 'report' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'report' person.id %}"> Report </a>
+        <a class="nav-link" href="{% url 'report' person.id %}"> Vaccination Report of a Centre </a>
       </li>
       <li class="nav-item {% if nbar == 'statsVC' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'statsVC' person.id %}">Statistics </a>
+        <a class="nav-link" href="{% url 'statsVC' person.id %}">Statistics of Vaccinated People </a>
       </li> 
 
       {% endif %}
