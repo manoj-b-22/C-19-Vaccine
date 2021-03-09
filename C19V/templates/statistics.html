@@ -50,21 +50,11 @@
             <li><span>0%</span></li>
         </ul>
         <ul class="bars">
+            {% for cen in centre %}
             <li>
-                <div class="bar" data-percentage="50"></div><span>Center 01</span>
+                <div class="bar" data-percentage="50"></div><span>{{centre.id}}</span>
             </li>
-            <li>
-                <div class="bar" data-percentage="30"></div><span>Center 02</span>
-            </li>
-            <li>
-                <div class="bar" data-percentage="60"></div><span>Center 03</span>
-            </li>
-            <li>
-                <div class="bar" data-percentage="90"></div><span>Center 04</span>
-            </li>
-            <li>
-                <div class="bar" data-percentage="80"></div><span>Center 05</span>
-            </li>
+            {% endfor %}
         </ul>
     </div>
 

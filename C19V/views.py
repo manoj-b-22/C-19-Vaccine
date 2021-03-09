@@ -58,8 +58,10 @@ def stats(request,pk):
     people = models.VaccinatedPerson.objects.all()
     myFilter = filters.PersonFilter(request.GET,queryset=people)
     people = myFilter.qs.count()
- 
-    context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people}
+
+    centres = models.TestCentre.objects.all()
+
+    context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres}
     return render(request, 'statistics.html', context)
 
 
