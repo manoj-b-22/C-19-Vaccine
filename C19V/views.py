@@ -40,14 +40,15 @@ def health(request,pk):
 def createStatus(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)   
+    last=models.Status.objects.filter(person=person).last()
 
     if request.method=='POST':
-        form = forms.StatusForm(request.POST)
+        form = forms.StatusForm(request.POST,instance=last)
         if form.is_valid():
             form.save()
             return redirect('health',pk=pk)
 
-    form = forms.StatusForm() 
+    form = forms.StatusForm(instance=last) 
     context={'form':form,}
     return render(request,'createstatus.html',context)        
 
@@ -159,13 +160,15 @@ def Login(request):
 
 def createPerson(request,pk):
 
+    person = models.TestCentre.objects.get(id=pk)
+
     if request.method == 'POST':
-        form = forms.PersonForm(request.POST)
+        form = forms.PersonForm(request.POST,initial={'centre':person})
         if form.is_valid():
             form.save()
             return redirect('report',pk=pk)
 
-    form = forms.PersonForm()        
+    form = forms.PersonForm(initial={'centre':person})        
     dictionary = {'form': form,}
     return render(request, 'createperson.html', dictionary)
 
