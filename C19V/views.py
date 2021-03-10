@@ -61,6 +61,12 @@ def stats(request,pk):
 
     percent=[]
     centres = models.TestCentre.objects.all()
+    if request.method == 'GET':
+        if request.GET.get('city')!=None:
+            centres = centres.filter(city=request.GET.get('city'))
+        if request.GET.get('state')!=None:
+            centres = centres.filter(state=request.GET.get('state'))
+
     for cen in centres:
         k = people.filter(centre=cen).count()
         res = int( k/people.count()*100)
@@ -127,6 +133,12 @@ def statsVC(request,pk):
 
     percent = []
     centres = models.TestCentre.objects.all()
+    if request.method == 'GET':
+        if request.GET.get('city')!=None:
+            centres = centres.filter(city=request.GET.get('city'))
+        if request.GET.get('state')!=None:
+            centres = centres.filter(state=request.GET.get('state'))
+
     for cen in centres:
         k = people.filter(centre=cen).count()
         res = int(k/people.count()*100)
