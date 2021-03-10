@@ -61,11 +61,12 @@ def stats(request,pk):
 
     percent=[]
     centres = models.TestCentre.objects.all()
-    if request.method == 'GET':
-        if request.GET.get('city')!=None:
-            centres = centres.filter(city=request.GET.get('city'))
-        if request.GET.get('state')!=None:
-            centres = centres.filter(state=request.GET.get('state'))
+    city = myFilter.form.cleaned_data['city']
+    state = myFilter.form.cleaned_data['state']
+    if city !=None:
+        centres = centres.filter(city=city)
+    if state !=None:
+        centres = centres.filter(state=state)
 
     for cen in centres:
         k = people.filter(centre=cen).count()
@@ -95,6 +96,10 @@ def report(request,pk,name=''):
 
     for i in models.VaccinatedPerson.objects.filter(centre=person):
         stat = models.Status.objects.filter(person=i).last()
+        if stat == None:
+            success = vaccinations
+            failure = 0
+            break
         if stat.status == 'Bad':
             failure+=1
         else:
@@ -133,11 +138,12 @@ def statsVC(request,pk):
 
     percent = []
     centres = models.TestCentre.objects.all()
-    if request.method == 'GET':
-        if request.GET.get('city')!=None:
-            centres = centres.filter(city=request.GET.get('city'))
-        if request.GET.get('state')!=None:
-            centres = centres.filter(state=request.GET.get('state'))
+    city = myFilter.form.cleaned_data['city']
+    state = myFilter.form.cleaned_data['state']
+    if city !=None:
+        centres = centres.filter(city=city)
+    if state !=None:
+        centres = centres.filter(state=state)
 
     for cen in centres:
         k = people.filter(centre=cen).count()
