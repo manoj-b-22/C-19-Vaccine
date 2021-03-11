@@ -170,7 +170,19 @@ def createPerson(request,pk):
 
     form = forms.PersonForm(initial={'centre':person})        
     dictionary = {'form': form,}
-    return render(request, 'createperson.html', dictionary)
+    return render(request, 'registerperson.html', dictionary)
+
+def registerCentre(request):
+
+    if request.method == 'POST':
+        form = forms.TestCentreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('loginvc')
+
+    form = forms.TestCentreForm()
+    dic = {'form':form}
+    return render(request,'registercentre.html',dic)    
 
 def LoginVC(request):
 
