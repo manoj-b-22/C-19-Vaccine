@@ -2,19 +2,20 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static '/css/patient_home.css'%}">
+
 <centre>
     <div class="container-md-8">
       <div class="card mb-3">
         <div class="card-body">
           <div class="jumbotron align-items-center text-center">
-            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+            <img src="{% static '/images/vaccination-centre.jpg'%}" alt="Admin"  height ="10%" width="20%">
             <div class="mt-3">
-              <h1>PATIENT DETAILS</h1>
+              <h1>VACCINATION CENTRE DETAILS</h1>
             </div>  
           </div>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Full Name</h6>
+              <h6 class="mb-0 pl-4">Vaccination Centre  Name</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
               {{ person.name }}
@@ -23,29 +24,16 @@
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Gender</h6>
+              <h6 class="mb-0 pl-4">Email id</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
-              {% if person.gender == 'M' %}
-                Male
-              {% else %}
-                Female
-              {% endif %}    
+              {{person.email}}
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Date of Birth</h6>
-            </div>
-            <div class="col-sm-9 pl-4 text-secondary">
-              {{person.dob | date}}
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Phone Number</h6>
+              <h6 class="mb-0 pl-4">Phone number</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
               {{person.phone_no}}
@@ -54,7 +42,7 @@
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Address</h6>
+              <h6 class="mb-0 pl-4">Vaccination Centre Address</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
               {{person.address}}
@@ -75,25 +63,43 @@
               <h6 class="mb-0 pl-4">State</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
-              {{ person.state }}
+              {{person.state}}
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Vaccination Centre</h6>
+              <h6 class="mb-0 pl-4">pin code</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
-              {{ person.centre.name }}
+              {{person.pincode}}
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0 pl-4">Previous Status</h6>
+              <h6 class="mb-0 pl-4">Opening time</h6>
             </div>
             <div class="col-sm-9 pl-4 text-secondary">
-              {{status.status}}
+              {{person.active_time_from}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 pl-4">Closing time</h6>
+            </div>
+            <div class="col-sm-9 pl-4 text-secondary">
+              {{person.active_time_to}}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 pl-4">Total Vaccinations</h6>
+            </div>
+            <div class="col-sm-9 pl-4 text-secondary">
+              {{Count}}
             </div>
           </div>
         </div>

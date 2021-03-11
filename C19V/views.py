@@ -128,6 +128,13 @@ def show(request,pk):
    context={'person':person ,'status':status}
    return render(request,'showpatient.html',context) 
 
+def showvc(request,pk):
+
+    person = models.TestCentre.objects.get(id=pk)
+    count = models.VaccinatedPerson.objects.get(centre=person).count()
+
+    context={'person':person,'count':count}
+    return render(request,'showcentre.html',context)
 
 def statsVC(request,pk):
 
