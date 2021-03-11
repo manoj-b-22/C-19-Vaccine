@@ -98,9 +98,7 @@ def report(request,pk,name=''):
     for i in models.VaccinatedPerson.objects.filter(centre=person):
         stat = models.Status.objects.filter(person=i).last()
         if stat == None:
-            success = vaccinations
-            failure = 0
-            break
+            success +=1
         if stat.status == 'Bad':
             failure+=1
         else:
