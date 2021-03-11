@@ -3,15 +3,15 @@ from django.utils import timezone
 # Create your models here.
 
 class TestCentre(models.Model):
-    name = models.CharField(verbose_name="Name",max_length=50)
+    name = models.CharField(max_length=50)
     email = models.EmailField(max_length=25)
     phone_no =models.CharField(max_length=10)
     address = models.TextField(max_length=128)
     city = models.CharField(max_length=10)
     state = models.CharField(max_length=10)
     pincode = models.CharField(max_length=6)
-    active_time_from = models.TimeField(help_text=('From'))
-    active_time_to = models.TimeField(help_text=('To'))
+    active_time_from = models.TimeField() #From
+    active_time_to = models.TimeField()   #To
 
     def __str__(self):
         return self.name
