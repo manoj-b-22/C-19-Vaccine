@@ -60,15 +60,16 @@ def stats(request,pk):
     myFilter = filters.PersonFilter(request.GET,queryset=people)
     people = myFilter.qs
 
-    percent=[]
-    centres = models.TestCentre.objects.all()
+    centres = models.TestCentre.objects.all() 
     city = myFilter.form.cleaned_data['city']
     state = myFilter.form.cleaned_data['state']
-    if city !=None:
-        centres = centres.filter(city=city)
-    if state !=None:
-        centres = centres.filter(state=state)
 
+    if city != None and len(city)>0:
+        centres = centres.filter(city=city)
+    if state != None and len(state)>0:
+        centres = centres.filter(state=state)   
+
+    percent=[]
     for cen in centres:
         k = people.filter(centre=cen).count()
         res = int( k/people.count()*100)
@@ -144,9 +145,9 @@ def statsVC(request,pk):
     centres = models.TestCentre.objects.all()
     city = myFilter.form.cleaned_data['city']
     state = myFilter.form.cleaned_data['state']
-    if city !=None:
+    if city !=None and len(city)>0:
         centres = centres.filter(city=city)
-    if state !=None:
+    if state !=None and len(state)>0:
         centres = centres.filter(state=state)
 
     for cen in centres:
