@@ -128,7 +128,7 @@ def show(request,pk):
 def showvc(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
-    count = models.VaccinatedPerson.objects.get(centre=person).count()
+    count = models.VaccinatedPerson.objects.filter(centre=person).count()
 
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
