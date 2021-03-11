@@ -4,6 +4,22 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    {{ form.as_p }}
-    <input type='submit' name='Submit'>
+    <label for="name">Name - </label>
+    {{ form.name }} <br><br>
+    <label for="email">Email Id - </label>
+    {{ form.email }} <br><br>
+    <label for="phone_no">Phone Number - </label>
+    {{ form.phone_no }} <br><br>
+    <label for="address">Address - </label>
+    {{ form.address }} <br><br>
+    <label for="city">City - </label>
+    {{ form.city }} <br><br>
+    <label for="state">State - </label>
+    {{ form.state }} <br><br>
+    <label for="pincode">Pincode - </label>
+    {{ form.pincode }} <br><br>
+    <label for="active_time_from">Opening Time - </label>
+    {{ form.active_time_from }} <br><br>
+    <label for="active_time_to">Closing Time - </label>
+    {{ form.active_time_to }} <br><br>
 </form> 
