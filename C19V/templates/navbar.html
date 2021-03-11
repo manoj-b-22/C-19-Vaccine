@@ -33,7 +33,19 @@
       </li> 
 
       {% endif %}
-
     </ul>
   </div>
+
+  {% if block == 'Patient' %}
+
+    <span class='text-white mx-3 '>Hi {{person.name}}</span>
+    <span><a href="{% url 'login'%}">Logout</a></span>
+  
+  {% else %}
+
+  <span class='text-white mx-3'>{{person.name}}</span>
+  <span><a href="{% url 'loginvc'%}">Logout</a></span>
+
+  {% endif %}
+
 </nav>
