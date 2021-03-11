@@ -4,6 +4,20 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    {{ form.as_p }}
+    <label for="name">Name - </label>
+    {{ form.name }} <br><br>
+    <label for="gender">Gender - </label>
+    {{ form.gender }} <br><br>
+    <label for="dob">Date of Birth - </label>
+    {{ form.dob }} <br><br>
+    <label for="phone_no">Phone Number - </label>
+    {{ form.phone_no }} <br><br>
+    <label for="address">Address - </label>
+    {{ form.address }} <br><br>
+    <label for="city">City - </label>
+    {{ form.city }} <br><br>
+    <label for="state">State - </label>
+    {{ form.state }} <br><br>
+
     <input type='submit' name='Submit'>
 </form> 
