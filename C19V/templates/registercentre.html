@@ -1,5 +1,7 @@
 {% load static %}
 
+<link rel="stylesheet" href='{% static "css/registercentre.css" %}'>
+
 <h3>Register Your Vaccinated Centre</h3>
 <form action="" method="POST">
     {% csrf_token %}
@@ -22,4 +24,5 @@
     {{ form.active_time_from }} <br><br>
     <label for="active_time_to">Closing Time - </label>
     {{ form.active_time_to }} <br><br>
+    <input type='submit' name='Submit'>
 </form> 
