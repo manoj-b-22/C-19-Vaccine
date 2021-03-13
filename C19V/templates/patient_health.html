@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href='{% static "css/updatestatus.css" %}'>
+<script src="{% static '/js/status.js' %}"></script>
 <br>
 <h1 class="text-center">Current Health Status</h1><br>
 <h2 class="text-center {% if last.status == 'Good' %}text-success{% elif last.status == 'Ok' %}text-warning{% else %}text-danger{% endif %}" >
@@ -33,12 +35,23 @@
     </div><br>
     <div class="row">
         <div class="col text-center">
-            <button type="button" class="btn btn-dark"><a href="{% url 'create_status' person.id %}">Update Status</a></button>
+            <button type="button" class="btn btn-dark open-button" onclick="openForm()">Update Status</button>
         </div>
     </div>
- 
 
+<div class="form-popup" id="myForm">
+    <form action='' method='POST' class="form-container">
+        <h1>Update your Status </h1>
+        {% csrf_token %}
+       <div class="formone">
+            <label for="status"><b>Health Status -</b> </label>
+            {{ form.status }}<br><br>
+       </div>
+        <input type='submit' name='Confirm' class="btn" value='Submit'>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
 </div>
 
-
+</div>
+   
 {% endblock %}
