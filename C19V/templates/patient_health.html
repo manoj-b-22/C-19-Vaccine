@@ -40,18 +40,21 @@
     </div>
 
 <div class="form-popup" id="myForm">
-    <form action='' method='POST' class="form-container">
-        <h1>Update your Status </h1>
+    <form action="" method='POST' class="form-container">
         {% csrf_token %}
-       <div class="formone">
+        <h1>Update your Status </h1>
+        <div class="formone">
             <label for="status"><b>Health Status -</b> </label>
             {{ form.status }}<br><br>
-       </div>
+        </div>
+        <div style="display: none;">
+            <label for="person"><b>Name -</b> </label>
+            {{ form.person }}<br><br>
+        </div>
         <input type='submit' name='Confirm' class="btn" value='Submit'>
         <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
 </div>
-
 </div>
    
 {% endblock %}

@@ -31,17 +31,17 @@ def home(request,pk):
 def health(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
-    status = models.Status.objects.filter(person=person)
-    last = models.Status.objects.filter(person=person).last()
+    last1 = models.Status.objects.filter(person=person).last()
 
     if request.method == 'POST':
-        form = forms.StatusForm(request.POST, instance=last)
+        form = forms.StatusForm(request.POST)
         if form.is_valid():
             form.save()
-            print(form)
+            last1 = models.Status.objects.filter(person=person).last()
 
-    form = forms.StatusForm(instance=last)
-    context = {'nbar': 'health' , 'block':'Patient','person':person,'status':status,'last':last,'form':form}
+    form = forms.StatusForm(initial={'status':last1.status,'person':person})
+    status = models.Status.objects.filter(person=person)
+    context = {'nbar': 'health' , 'block':'Patient','person':person,'status':status,'last':last1,'form':form}
     return render(request, 'patient_health.html', context)
 
 def stats(request,pk):
@@ -159,12 +159,12 @@ def createPerson(request,pk):
     person = models.TestCentre.objects.get(id=pk)
 
     if request.method == 'POST':
-        form = forms.PersonForm(request.POST,initial={'centre':person})
+        form = forms.PersonForm(request.POST)   
         if form.is_valid():
             form.save()
             return redirect('report',pk=pk)
 
-    form = forms.PersonForm(initial={'centre':person})        
+    form = forms.PersonForm(initial={'centre':person})      
     dictionary = {'form': form,}
     return render(request, 'registerperson.html', dictionary)
 
