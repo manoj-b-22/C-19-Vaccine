@@ -49,13 +49,18 @@
 		<h5>PATIENTS:</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-dark  btn-sm btn-block" href="{% url 'search_patient' person.id %}">Search for Patient Details</a>
+			<a class="btn btn-dark  btn-sm btn-block" href="">Search for Patient Details</a>
+			<form action="" method="GET">
+				{{filter.form.as_p}}
+				<input type="submit" name='Search'>
+			</form>
 			<table class="table table-sm">
 				<tr>
 					<th></th>
 					<th>Patient name</th>	
 				</tr>
-				{% for pat in search_patients %}
+				{{people.Vaccinatedperson}}
+				{% for pat in people %}
 					<tr>
 						<td><a href="{% url 'show_patient' pat.id %}">View</a></td>	
 						<td>{{pat.name}}</td>	

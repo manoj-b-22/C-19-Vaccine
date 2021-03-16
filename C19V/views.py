@@ -79,10 +79,14 @@ def dashboard(request,pk):
     context = {'nbar': 'dashboard' , 'block':'VC','person':person}
     return render(request, 'vc_home.html',context)
 
-def report(request,pk,name=''):
+def report(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
     patients = models.VaccinatedPerson.objects.filter(centre=person).order_by('-date_created')[:5]
+
+    people = models.VaccinatedPerson.objects.all()
+    myFilter = filters.PatientFilter(request.GET,queryset=people)
+    people = myFilter.qs
 
     vaccinations = models.VaccinatedPerson.objects.filter(centre=person).count()
     success = 0 
@@ -95,19 +99,10 @@ def report(request,pk,name=''):
         else:
             success+=1  
 
-    context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,'failure':failure}
-    
-    if request.method=='POST':
-        name = request.POST.get('name')
-        search_patients = models.VaccinatedPerson.objects.filter(name=name)
-        context['search_patients']=search_patients
+    context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,
+                'failure':failure,'filter': myFilter,'people': people}
 
     return render(request, 'vc_report.html',context)    
-
-def search(request,pk):
-
-    context = {'pk':pk}
-    return render(request,'searchpatient.html',context) 
 
 def show(request,pk):
 

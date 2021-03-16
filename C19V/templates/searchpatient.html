@@ -1,8 +1,0 @@
-{% load static %}
-<h3>Enter the patient name to Search</h3>
-
-<form action="{% url 'report' pk %}" method="POST">
-    {% csrf_token %}
-    <input type='text' name='name'>
-    <input type="submit" name='Submit'>
-</form>

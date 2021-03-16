@@ -12,7 +12,6 @@ urlpatterns = [
     path('vc/login/', views.LoginVC, name="loginvc"),
     path('vc/register/', views.registerVC, name='registervc'),
     path('vc/report/<str:pk>/addperson', views.createPerson, name="create_person"),
-    path('vc/report/<str:pk>/searchpatient',views.search,name='search_patient'),
     path('vc/report/showpatient/<str:pk>',views.show,name='show_patient'),
     path('statistics/showcentre/<str:pk>',views.showvc,name='show_centre'),
     path('vc/register/info',views.registerCentre,name='create_register')

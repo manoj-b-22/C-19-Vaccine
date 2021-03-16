@@ -14,4 +14,10 @@ class PersonFilter(django_filters.FilterSet):
         model=models.VaccinatedPerson
         fields='__all__'
         exclude=['name','dob','phone_no','date_created','address','centre']
+
+class PatientFilter(django_filters.FilterSet):
+    name = CharFilter(field_name='name',lookup_expr='icontains')
+    class Meta:
+        model=models.VaccinatedPerson
+        fields=['name']       
         
