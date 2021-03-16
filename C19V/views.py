@@ -84,9 +84,9 @@ def report(request,pk):
     person = models.TestCentre.objects.get(id=pk)
     patients = models.VaccinatedPerson.objects.filter(centre=person).order_by('-date_created')[:5]
 
-    people = models.VaccinatedPerson.objects.all()
-    myFilter = filters.PatientFilter(request.GET,queryset=people)
-    people = myFilter.qs
+    search = models.VaccinatedPerson.objects.all()
+    myFilter = filters.PatientFilter(request.GET,queryset=search)
+    search = myFilter.qs
 
     vaccinations = models.VaccinatedPerson.objects.filter(centre=person).count()
     success = 0 
@@ -100,7 +100,7 @@ def report(request,pk):
             success+=1  
 
     context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,
-                'failure':failure,'filter': myFilter,'people': people}
+                'failure':failure,'filter': myFilter,'people': search}
 
     return render(request, 'vc_report.html',context)    
 
