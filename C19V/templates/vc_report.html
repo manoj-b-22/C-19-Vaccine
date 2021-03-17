@@ -22,7 +22,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="successful-vaccinations">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Vaccination Successful</h5>
+			  		<h5 class="card-title">Fine Cases</h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{success}}</h3>
@@ -35,7 +35,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="unsuccessful-vaccinations">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Vaccination Unsuccessful</h5>
+			  		<h5 class="card-title"><a class="text-white" href="{% url 'call_ambulance' person.id %}">Serious Cases</a></h5>
 			  	</div>
 			  	<div class="card-body">
 			    	<h3 class="card-title">{{failure}}</h3>

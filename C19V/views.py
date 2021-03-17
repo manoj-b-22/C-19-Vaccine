@@ -102,7 +102,19 @@ def report(request,pk):
     context = {'nbar': 'report' , 'block':'VC','person':person,'patients':patients,'vaccinations':vaccinations,'success':success,
                 'failure':failure,'filter': myFilter,'people': search}
 
-    return render(request, 'vc_report.html',context)    
+    return render(request, 'vc_report.html',context) 
+
+def call(request,pk):
+    centre =  models.TestCentre.objects.get(id=pk)
+    patients = models.VaccinatedPerson.objects.filter(centre=centre)
+    serious = []
+
+    for i in patients:
+        stat = models.Status.objects.filter(person=i).last()
+        if stat != None and stat.status == 'Bad':
+            serious.append(stat)
+    context = {'patients':serious}
+    return render(request,'callambulance.html',context)        
 
 def show(request,pk):
 

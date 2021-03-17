@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/', views.Login, name="login"),
     path('vc/login/', views.LoginVC, name="loginvc"),
     path('vc/register/', views.registerVC, name='registervc'),
+    path('vc/<str:pk>/callambulance',views.call,name='call_ambulance'),
     path('vc/report/<str:pk>/addperson', views.createPerson, name="create_person"),
     path('vc/report/showpatient/<str:pk>',views.show,name='show_patient'),
     path('statistics/showcentre/<str:pk>',views.showvc,name='show_centre'),
