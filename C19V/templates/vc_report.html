@@ -3,6 +3,7 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/vc_report.css'%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row">
 	<div class="col">
 		<div class="col-md">
@@ -49,11 +50,20 @@
 		<h5>PATIENTS:</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-dark  btn-sm btn-block" href="">Search for Patient Details</a>
-			<form action="" method="GET">
-				{{filter.form.as_p}}
-				<input type="submit" name='Search'>
-			</form>
+			
+					<form action="" method="GET">
+						<div class="search-container" style="text-align: center;margin-right: 35px;margin-bottom: 10px;">
+						<label for="name"><strong>Patient Name:&nbsp</strong></label>
+						{{filter.form.name}}
+							
+							<button class="btn btn-dark  btn-sm pd" type="submit" style="margin-bottom: 5px;"><b>Search&nbsp<i class="fa fa-search"></i></b></button>
+						</div>
+						
+					</form>
+				
+				
+				<!--<input type="submit" name='Search'><a class="btn btn-dark  btn-sm btn-block" href="">Search for Patient Details</a>-->
+			
 			<table class="table table-sm">
 				<tr>
 					<th></th>
