@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'C19V.apps.C19VConfig',
     'django_filters',
+    'django_google_maps'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR,'C19V/static') ]
+
+GOOGLE_MAPS_API_KEY = "AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc"
