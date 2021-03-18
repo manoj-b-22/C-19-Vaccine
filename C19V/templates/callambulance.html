@@ -1,8 +1,6 @@
 {% load static %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <div class="container">
     <img src="{% static '/images/amb1.jpg' %}" class="rounded" style="margin-left: 42%;" alt="Ambulance" width="180" height="180">
     <h2 style="text-align: center;"><b>EMERGENCY</b></h2><br>
@@ -10,24 +8,24 @@
     <tbody>
         <thead>
             <tr>
+                <th>S.No</th>
                 <th>Patient Name</th>
+                <th>Gender</th>
                 <th>Phone No</th>
-                
                 <th>Address</th>
-                <th>LandMark</th>
                 <th>City</th>
-                
             </tr>
         </thead>
+    {% for pat in patients %}
     <tr>
-        <td>B.Manoj srinivas</td>
-        <td>9491728289</td>
-        
-        <td>lingampalli,khanamat.</td>
-        <td>Near railway station.</td>
-        <td>Hyderabad</td>
-       
+        <td>{{forloop.counter}}</td>
+        <td>{{pat.name}}</td>
+        <td>{{pat.gender}}</td>
+        <td>{{pat.phone_no}}</td>
+        <td>{{pat.address}}</td>
+        <td>{{pat.city}}</td>  
     </tr>
+    {% endfor %}
     </tbody>
 </table>
     <br>

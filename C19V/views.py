@@ -112,7 +112,8 @@ def call(request,pk):
     for i in patients:
         stat = models.Status.objects.filter(person=i).last()
         if stat != None and stat.status == 'Bad':
-            serious.append(stat)
+            serious.append(i)
+
     context = {'patients':serious}
     return render(request,'callambulance.html',context)        
 
