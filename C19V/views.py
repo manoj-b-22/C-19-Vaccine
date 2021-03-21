@@ -188,6 +188,23 @@ def registerCentre(request):
     dic = {'form':form}
     return render(request,'registercentre.html',dic)    
 
+def LoginPatient(request):
+    if request.method =='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+            return redirect('home')
+        else:
+            messages.info(request,'Username or Password is incorrect')    
+
+    return render(request, 'patient_login.html')
+
+def LogoutPatient(request):
+    logout(request)
+    return redirect('login')
+
 def LoginVC(request):
 
     if request.method =='POST':
