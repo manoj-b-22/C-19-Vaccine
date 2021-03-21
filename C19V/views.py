@@ -224,7 +224,6 @@ def LogoutVC(request):
     return redirect('loginvc')    
 
 def registerVC(request):
-    form = forms.CreateUserForm()
 
     if request.method=='POST':
         form = forms.CreateUserForm(request.POST)
@@ -234,6 +233,7 @@ def registerVC(request):
             messages.success(request,'Account successfully created for '+user)
             return redirect('loginvc')
 
+    form = forms.CreateUserForm()
     context={ 'form':form }
     return render(request,'vc_register.html',context)
 

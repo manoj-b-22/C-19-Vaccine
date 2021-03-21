@@ -41,34 +41,25 @@
           {% csrf_token %}
           <div class="form-group">
             <label for="inputUsernameEmail">Username</label>
-            <input type="text" class="form-control" id="inputUsernameEmail">
+            {{form.username}}
           </div>
           <div class="form-group">
             <label for="Password1">Password</label>
-            <input type="password" class="form-control" id="Password1">
+            {{form.password1}}
           </div>
           <div class="form-group">
             <label for="Password2">Re-enter Password</label>
-            <input type="password" class="form-control" id="Password2">
-          </div>
-          <hr>
-          <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail">
+            {{form.password2}}
           </div>
           <button type="submit" style="background-color:black;"class="btn btn btn-primary">
             Sign Up
           </button>
         </form>
-
-    </div>
+      </div>
       <div>
-        
       <h3>Already have an account?</h3>
       <a href="{% url 'loginvc' %}">Log In</a>
-
       </div>
-
     </div>
   </div>
 </div>

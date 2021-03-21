@@ -23,6 +23,7 @@ class TestCentreForm(ModelForm):
     class Meta:
         model = models.TestCentre
         fields='__all__'
+        exclude=['user']
         labels={
             'phone_no':('Phone Number'),
             'email':('Email ID'),
