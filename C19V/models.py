@@ -3,8 +3,8 @@ from django.db.models.deletion import CASCADE
 from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
-
 class TestCentre(models.Model):
+    user = models.OneToOneField(User,on_delete=CASCADE)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=25)
     phone_no =models.CharField(max_length=10)
@@ -23,6 +23,7 @@ class VaccinatedPerson(models.Model):
 
     GENDER_CHOICES = (('M','Male'),('F','Female'))
 
+    user = models.OneToOneField(User,on_delete=CASCADE)
     name = models.CharField(max_length=50)
     gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
     dob = models.DateField()
@@ -31,7 +32,7 @@ class VaccinatedPerson(models.Model):
     city = models.CharField(max_length=20)
     state = models.CharField(max_length=10)
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.ForeignKey(TestCentre,on_delete=models.CASCADE)
+    centre = models.OneToOneField(TestCentre,on_delete=models.CASCADE)
 
     @property
     def age(self):

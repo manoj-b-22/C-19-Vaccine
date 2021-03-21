@@ -1,7 +1,11 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from . import filters
 from . import models
@@ -20,6 +24,8 @@ def home(request,pk):
     red = models.Status.objects.filter(person=person).filter(status='Bad').count()
 
     total = models.Status.objects.filter(person=person).count()
+    if total==0:
+        total=1
 
     green = int((green/total)*100)
     yellow = int((yellow/total)*100)
@@ -159,47 +165,64 @@ def statsVC(request,pk):
     context = {'nbar': 'statsVC', 'block': 'VC', 'person': person,'filter': myFilter, 'people': people, 'centre': centres, 'percent': percent}
     return render(request, 'statistics.html',context)
 
-def Login(request):
-    return render(request, 'patient_login.html')
-
-def createPerson(request,pk):
-
+def createPerson(request,pk,user):
     person = models.TestCentre.objects.get(id=pk)
+    user1 = User.objects.get(id=user)
+    form = forms.PersonForm(initial={'centre':person,'user':user1}) 
 
     if request.method == 'POST':
-        form = forms.PersonForm(request.POST)   
+        form = forms.PersonForm(request.POST)
+        form.user=user1   
         if form.is_valid():
             form.save()
             return redirect('report',pk=pk)
-
-    form = forms.PersonForm(initial={'centre':person})      
+     
     dictionary = {'form': form,}
     return render(request, 'registerperson.html', dictionary)
 
 def registerCentre(request,user):
+    user1 = User.objects.get(id=user)
+    form = forms.TestCentreForm(initial={'user':user1})
 
     if request.method == 'POST':
         form = forms.TestCentreForm(request.POST)
         if form.is_valid():
+            form.user=user1
             form.save()
             return redirect('loginvc')
 
-    form = forms.TestCentreForm(initial={'user':user})
     dic = {'form':form}
     return render(request,'registercentre.html',dic)    
 
 def LoginPatient(request):
+
     if request.method =='POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            person = models.VaccinatedPerson.objects.get(user=user)
+            return HttpResponseRedirect(reverse('home',kwargs={'pk':person.id}))
         else:
             messages.info(request,'Username or Password is incorrect')    
 
     return render(request, 'patient_login.html')
+
+def register(request,pk):
+    form = forms.CreateUserForm()
+
+    if request.method=='POST':
+        form = forms.CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request,'Account successfully created for '+username)
+            return HttpResponseRedirect(reverse('create_person',kwargs={'pk':pk,'user':user.id}))
+
+    context={'form':form }
+    return render(request,'patient_register.html',context)
+
 
 def LogoutPatient(request):
     logout(request)
@@ -213,7 +236,8 @@ def LoginVC(request):
         user = authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('dashboard')
+            centre = models.TestCentre.objects.get(user=user)
+            return HttpResponseRedirect(reverse('dashboard',kwargs={'pk':centre.id}))
         else:
             messages.info(request,'Username or Password is incorrect')    
 
@@ -223,7 +247,9 @@ def LogoutVC(request):
     logout(request)
     return redirect('loginvc')    
 
+@csrf_protect
 def registerVC(request):
+    form = forms.CreateUserForm()
 
     if request.method=='POST':
         form = forms.CreateUserForm(request.POST)
@@ -231,10 +257,9 @@ def registerVC(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)
-            return redirect('create_register',user=user)
+            return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))
 
-    form = forms.CreateUserForm()
-    context={ 'form':form }
+    context={'form':form }
     return render(request,'vc_register.html',context)
 
 #@login_required(login_url='loginvc')

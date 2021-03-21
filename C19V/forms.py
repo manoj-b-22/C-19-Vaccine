@@ -4,6 +4,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.contrib.admin import widgets
 
 class PersonForm(ModelForm):
@@ -23,7 +24,6 @@ class TestCentreForm(ModelForm):
     class Meta:
         model = models.TestCentre
         fields='__all__'
-        exclude=['user']
         labels={
             'phone_no':('Phone Number'),
             'email':('Email ID'),
@@ -43,4 +43,4 @@ class StatusForm(ModelForm):
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields=['username','password1','password2']        
+        fields=['username','password1','password2']    
