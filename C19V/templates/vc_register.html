@@ -38,7 +38,16 @@
       <div class="signupbox">
         <form role="form" method="POST" action='' >
           {% csrf_token %}
-          {{form.as_p}}
+         <label for="name">User Name </label>
+                {{ form.username }}<br></br>
+          <label for="password1">Enter the password</label>
+                {{ form.password1 }}<br></br>
+          <label for="password2">Re enter the password</label>
+                {{ form.password2 }}<br></br>
+          <div style="display: none;">
+                <label for="is_staff"><b> is_staff-</b> </label>
+                {{ form.is_staff }}<br><br>
+          </div>
           <button type="submit" style="background-color:black;"class="btn btn btn-primary">
             Sign Up
           </button>
