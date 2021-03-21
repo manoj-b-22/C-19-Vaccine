@@ -7,38 +7,30 @@
 <div class="container">
     <form action="" method="POST">
         {% csrf_token %}
-       
     <table class="table table-dark table-hover">
-       
         <tbody>
             <tr>
                 <td><label for="name">Name - &nbsp&nbsp</label>
                 {{ form.name }}</td>
                 <td><label for="city">City - &nbsp</label>
                     {{ form.city }}</td>
-    
             </tr>
             <tr>
                 <td><label for="email">Email Id - </label>
                 {{ form.email }}</td>
                 <td><label for="state">State - </label>
                     {{ form.state }}</td>
-    
             </tr>
             <tr>
                 <td><label for="phone_no">Phone Number - </label>
                 {{ form.phone_no }}</td>
                 <td><label for="pincode">Pincode - </label>
                     {{ form.pincode }}</td>
-    
             </tr>
-          
-          
             <tr>
                 <td>
                     <label for="active_time_from">Opening Time - &nbsp</label>
-                    {{ form.active_time_from }}
-                   
+                    {{ form.active_time_from }}  
                 </td>
                 <td>
                     <label for="active_time_to">Closing Time - </label>
@@ -48,7 +40,6 @@
             <tr>
                 <td><label for="address">Address - &nbsp</label><div style="width:50%;margin-left: 15%;">{{ form.address }}</div>
                     </td>
-            
             </tr>
         </tbody>
     </table><br>
@@ -58,8 +49,6 @@
       padding: 16px 32px;
       text-decoration: none;
       margin-left: 45%;
-      cursor: pointer;border-radius:3px;
-    " type='submit' name='Submit'>
+      cursor: pointer;border-radius:3px;"type='submit' name='Submit'>
 </form>
-
 </div>
