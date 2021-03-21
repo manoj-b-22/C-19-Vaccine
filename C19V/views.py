@@ -9,11 +9,12 @@ from django.contrib.auth.models import User
 
 from . import filters
 from . import models
-from . import forms
+from . import forms  
+from . import decorators
 
 # Create your views here.
 
-
+@decorators.patient_required(login_url='login')
 def home(request,pk):
     
     person = models.VaccinatedPerson.objects.get(id=pk)
@@ -34,6 +35,7 @@ def home(request,pk):
     context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status,'green':green,'red':red,'yellow':yellow}
     return render(request, 'patient_home.html', context)
 
+@decorators.patient_required(login_url='login')
 def health(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
@@ -50,6 +52,7 @@ def health(request,pk):
     context = {'nbar': 'health' , 'block':'Patient','person':person,'status':status,'last':last1,'form':form}
     return render(request, 'patient_health.html', context)
 
+@decorators.patient_required(login_url='login')
 def stats(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
@@ -77,7 +80,7 @@ def stats(request,pk):
     context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres,'percent':percent}
     return render(request, 'statistics.html', context)
 
-
+@decorators.VC_required(login_url='loginvc')
 def dashboard(request,pk):
     
     person = models.TestCentre.objects.get(id=pk)
@@ -85,6 +88,7 @@ def dashboard(request,pk):
     context = {'nbar': 'dashboard' , 'block':'VC','person':person}
     return render(request, 'vc_home.html',context)
 
+@decorators.VC_required(login_url='loginvc')
 def report(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
@@ -110,6 +114,7 @@ def report(request,pk):
 
     return render(request, 'vc_report.html',context) 
 
+@decorators.VC_required(login_url='loginvc')
 def call(request,pk):
     centre =  models.TestCentre.objects.get(id=pk)
     patients = models.VaccinatedPerson.objects.filter(centre=centre)
@@ -123,6 +128,7 @@ def call(request,pk):
     context = {'patients':serious}
     return render(request,'callambulance.html',context)        
 
+@decorators.VC_required(login_url='loginvc')
 def show(request,pk):
 
    person = models.VaccinatedPerson.objects.get(id=pk)
@@ -139,6 +145,7 @@ def showvc(request,pk):
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
 
+@decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
@@ -165,6 +172,7 @@ def statsVC(request,pk):
     context = {'nbar': 'statsVC', 'block': 'VC', 'person': person,'filter': myFilter, 'people': people, 'centre': centres, 'percent': percent}
     return render(request, 'statistics.html',context)
 
+@decorators.VC_required(login_url='loginvc')
 def createPerson(request,pk,user):
     person = models.TestCentre.objects.get(id=pk)
     user1 = User.objects.get(id=user)
@@ -209,6 +217,7 @@ def LoginPatient(request):
 
     return render(request, 'patient_login.html')
 
+@decorators.VC_required(login_url='loginvc')
 def register(request,pk):
     form = forms.CreateUserForm()
 
@@ -264,4 +273,4 @@ def registerVC(request):
     context={'form':form }
     return render(request,'vc_register.html',context)
 
-#@login_required(login_url='loginvc')
+
