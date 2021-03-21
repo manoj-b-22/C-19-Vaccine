@@ -176,7 +176,7 @@ def createPerson(request,pk):
     dictionary = {'form': form,}
     return render(request, 'registerperson.html', dictionary)
 
-def registerCentre(request):
+def registerCentre(request,user):
 
     if request.method == 'POST':
         form = forms.TestCentreForm(request.POST)
@@ -184,7 +184,7 @@ def registerCentre(request):
             form.save()
             return redirect('loginvc')
 
-    form = forms.TestCentreForm()
+    form = forms.TestCentreForm(initial={'user':user})
     dic = {'form':form}
     return render(request,'registercentre.html',dic)    
 
@@ -228,10 +228,10 @@ def registerVC(request):
     if request.method=='POST':
         form = forms.CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request,'Account successfully created for '+user)
-            return redirect('loginvc')
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request,'Account successfully created for '+username)
+            return redirect('create_register',user=user)
 
     form = forms.CreateUserForm()
     context={ 'form':form }
