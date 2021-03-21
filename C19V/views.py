@@ -214,6 +214,7 @@ def register(request,pk):
 
     if request.method=='POST':
         form = forms.CreateUserForm(request.POST)
+        form.is_staff=False
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -253,6 +254,7 @@ def registerVC(request):
 
     if request.method=='POST':
         form = forms.CreateUserForm(request.POST)
+        form.is_staff=True
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
