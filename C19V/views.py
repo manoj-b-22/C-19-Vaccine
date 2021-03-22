@@ -241,6 +241,7 @@ def LogoutPatient(request):
     logout(request)
     return redirect('login')
 
+@csrf_protect
 def LoginVC(request):
 
     if request.method =='POST':
