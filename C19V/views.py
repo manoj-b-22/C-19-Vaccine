@@ -41,6 +41,9 @@ def health(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     last1 = models.Status.objects.filter(person=person).last()
 
+    if last1 is None:
+        last1 = models.Status.objects.create(status='Good',person=person) 
+
     if request.method == 'POST':
         form = forms.StatusForm(request.POST)
         if form.is_valid():
