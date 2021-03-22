@@ -191,6 +191,7 @@ def createPerson(request,pk,user):
     dictionary = {'form': form,}
     return render(request, 'registerperson.html', dictionary)
 
+@csrf_protect
 def registerCentre(request,user):
     user1 = User.objects.get(id=user)
     form = forms.TestCentreForm(initial={'user':user1})
@@ -205,6 +206,7 @@ def registerCentre(request,user):
     dic = {'form':form}
     return render(request,'registercentre.html',dic)    
 
+@csrf_protect
 def LoginPatient(request):
 
     if request.method =='POST':
