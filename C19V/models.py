@@ -9,8 +9,8 @@ class TestCentre(models.Model):
     email = models.EmailField(max_length=25)
     phone_no =models.CharField(max_length=10)
     address = models.TextField(max_length=128)
-    city = models.CharField(max_length=10)
-    state = models.CharField(max_length=10)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
     pincode = models.CharField(max_length=6)
     active_time_from = models.TimeField() #From
     active_time_to = models.TimeField()   #To
@@ -29,8 +29,8 @@ class VaccinatedPerson(models.Model):
     dob = models.DateField()
     phone_no =models.CharField(max_length=10)
     address = models.TextField(max_length=128)
-    city = models.CharField(max_length=20)
-    state = models.CharField(max_length=10)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
     date_created = models.DateTimeField(auto_now_add=True)
     centre = models.OneToOneField(TestCentre,on_delete=models.CASCADE)
 
