@@ -41,9 +41,6 @@ def health(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     last1 = models.Status.objects.filter(person=person).last()
 
-    if last1 is None:
-        last1 = models.Status.objects.create(status='Good',person=person) 
-
     if request.method == 'POST':
         form = forms.StatusForm(request.POST)
         if form.is_valid():
@@ -191,22 +188,20 @@ def createPerson(request,pk,user):
     dictionary = {'form': form,}
     return render(request, 'registerperson.html', dictionary)
 
-@csrf_protect
 def registerCentre(request,user):
     user1 = User.objects.get(id=user)
     form = forms.TestCentreForm(initial={'user':user1})
 
     if request.method == 'POST':
         form = forms.TestCentreForm(request.POST)
+        form.user=user1
         if form.is_valid():
-            form.user=user1
             form.save()
             return redirect('loginvc')
 
     dic = {'form':form}
     return render(request,'registercentre.html',dic)    
 
-@csrf_protect
 def LoginPatient(request):
 
     if request.method =='POST':
@@ -221,6 +216,7 @@ def LoginPatient(request):
             messages.info(request,'Username or Password is incorrect')    
 
     return render(request, 'patient_login.html')
+    
 
 @decorators.VC_required(login_url='loginvc')
 def register(request,pk):
@@ -271,7 +267,9 @@ def registerVC(request):
         form = forms.CreateUserForm(request.POST)
         form.is_staff=True
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.is_staff=True
+            user.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)
             return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))
