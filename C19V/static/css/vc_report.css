@@ -2,6 +2,10 @@ body {
     background-color: #eff0f1;
 }
 
+td,th{
+    text-align: center;
+}
+
 #total-vaccinations {
     height: 200px;
     margin-top: 50px;

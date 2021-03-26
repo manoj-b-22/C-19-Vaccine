@@ -89,9 +89,11 @@
 				<tr>
 					<th>Name</th>
 					<th>Gender</th>
-					<th>Date of birth</th>
+					<th>Date of Birth</th>
 					<th>Phone Number</th>
 					<th>Vaccinated date</th>
+					<th>Vaccinated Time</th>
+					<th>Update</th>
 				</tr>
 
 				{% for patient in patients %}
@@ -100,10 +102,11 @@
 						<td>{{patient.gender}}</td>
 						<td>{{patient.dob}}</td>
                         <td>{{patient.phone_no}}</td>
-                        <td>{{patient.date_created}}</td>
+                        <td>{{patient.date_created | date}}</td>
+						<td>{{patient.date_created | time}}</td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_person' person.id patient.id %}" >Update</a></td>
 					</tr>
 				{% endfor %}
-
 			</table>
 		</div>
 	</div>

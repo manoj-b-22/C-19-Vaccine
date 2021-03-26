@@ -118,6 +118,22 @@ def report(request,pk):
     return render(request, 'vc_report.html',context) 
 
 @decorators.VC_required(login_url='loginvc')
+def updatePerson(request,pk,id):
+
+    person = models.VaccinatedPerson.objects.get(id=id)
+    form = forms.PersonForm(instance=person) 
+
+    if request.method == 'POST':
+        form = forms.PersonForm(request.POST,instance=person)
+        if form.is_valid():
+            form.save()
+            return redirect('report',pk=pk)
+     
+    dictionary = {'form': form,'update':True}
+    return render(request, 'registerperson.html', dictionary)
+
+
+@decorators.VC_required(login_url='loginvc')
 def call(request,pk):
     centre =  models.TestCentre.objects.get(id=pk)
     patients = models.VaccinatedPerson.objects.filter(centre=centre.name)
@@ -187,7 +203,7 @@ def createPerson(request,pk,user):
             form.save()
             return redirect('report',pk=pk)
      
-    dictionary = {'form': form,}
+    dictionary = {'form': form,'update':False}
     return render(request, 'registerperson.html', dictionary)
 
 def registerCentre(request,user):

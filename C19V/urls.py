@@ -16,6 +16,7 @@ urlpatterns = [
     path('vc/register/', views.registerVC, name='registervc'),
     path('vc/<str:pk>/callambulance',views.call,name='call_ambulance'),
     path('vc/report/<str:pk>/addperson/<str:user>', views.createPerson, name="create_person"),
+    path('vc/report/<str:pk>/updateperson/<str:id>',views.updatePerson,name="update_person"),
     path('vc/report/showpatient/<str:pk>',views.show,name='show_patient'),
     path('statistics/showcentre/<str:pk>',views.showvc,name='show_centre'),
     path('vc/register/<str:user>',views.registerCentre,name='create_centre')
