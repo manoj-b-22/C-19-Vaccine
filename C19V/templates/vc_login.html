@@ -56,7 +56,9 @@
             Log In
           </button>
         </form>
-        {{messages.info}}
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
       </div>
       <div>
         <h3>Not yet Registered?</h3>

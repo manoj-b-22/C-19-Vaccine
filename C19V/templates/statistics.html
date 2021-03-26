@@ -49,7 +49,7 @@
             {% for per in percent %}
                 {% if forloop.counter == forloop.parentloop.counter %}
                     <li>
-                        <div class="bar" data-percentage="{{ per }}"></div><span><a href="{% url 'show_centre' cen.id %}">Centre {{cen.id}}</a></span>
+                        <div class="bar" data-percentage="{{ per }}"></div><span><a href="{% url 'show_centre' cen.id %}">Centre {{forloop.counter}}</a></span>
                     </li>
                 {% endif %}
             {% endfor %}

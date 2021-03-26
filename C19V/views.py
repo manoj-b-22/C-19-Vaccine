@@ -41,6 +41,9 @@ def health(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     last1 = models.Status.objects.filter(person=person).last()
 
+    if last1 == None:
+        last1 = models.Status.objects.create(status='Good',person=person)
+
     if request.method == 'POST':
         form = forms.StatusForm(request.POST)
         if form.is_valid():
@@ -72,7 +75,7 @@ def stats(request,pk):
 
     percent=[]
     for cen in centres:
-        k = people.filter(centre=cen).count()
+        k = people.filter(centre=cen.name).count()
         res = int( k/people.count()*100)
         percent.append(res)
     people = people.count()        
@@ -92,17 +95,17 @@ def dashboard(request,pk):
 def report(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
-    patients = models.VaccinatedPerson.objects.filter(centre=person).order_by('-date_created')[:5]
+    patients = models.VaccinatedPerson.objects.filter(centre=person.name).order_by('-date_created')[:5]
 
     search = models.VaccinatedPerson.objects.all()
     myFilter = filters.PatientFilter(request.GET,queryset=search)
     search = myFilter.qs
 
-    vaccinations = models.VaccinatedPerson.objects.filter(centre=person).count()
+    vaccinations = models.VaccinatedPerson.objects.filter(centre=person.name).count()
     success = 0 
     failure = 0
 
-    for i in models.VaccinatedPerson.objects.filter(centre=person):
+    for i in models.VaccinatedPerson.objects.filter(centre=person.name):
         stat = models.Status.objects.filter(person=i).last()
         if stat != None and stat.status == 'Bad':
             failure+=1
@@ -117,7 +120,7 @@ def report(request,pk):
 @decorators.VC_required(login_url='loginvc')
 def call(request,pk):
     centre =  models.TestCentre.objects.get(id=pk)
-    patients = models.VaccinatedPerson.objects.filter(centre=centre)
+    patients = models.VaccinatedPerson.objects.filter(centre=centre.name)
     serious = []
 
     for i in patients:
@@ -140,7 +143,7 @@ def show(request,pk):
 def showvc(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
-    count = models.VaccinatedPerson.objects.filter(centre=person).count()
+    count = models.VaccinatedPerson.objects.filter(centre=person.name).count()
 
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
@@ -164,7 +167,7 @@ def statsVC(request,pk):
         centres = centres.filter(state=state)
 
     for cen in centres:
-        k = people.filter(centre=cen).count()
+        k = people.filter(centre=cen.name).count()
         res = int(k/people.count()*100)
         percent.append(res)
     people = people.count()
@@ -176,11 +179,10 @@ def statsVC(request,pk):
 def createPerson(request,pk,user):
     person = models.TestCentre.objects.get(id=pk)
     user1 = User.objects.get(id=user)
-    form = forms.PersonForm(initial={'centre':person,'user':user1}) 
+    form = forms.PersonForm(initial={'centre':person.name,'user':user1}) 
 
     if request.method == 'POST':
         form = forms.PersonForm(request.POST)
-        form.user=user1   
         if form.is_valid():
             form.save()
             return redirect('report',pk=pk)
@@ -208,7 +210,7 @@ def LoginPatient(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request,username=username,password=password)
-        if user is not None:
+        if user is not None and user.is_staff==False:
             login(request,user)
             person = models.VaccinatedPerson.objects.get(user=user)
             return HttpResponseRedirect(reverse('home',kwargs={'pk':person.id}))
@@ -227,8 +229,6 @@ def register(request,pk):
         form.is_staff=False
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request,'Account successfully created for '+username)
             return HttpResponseRedirect(reverse('create_person',kwargs={'pk':pk,'user':user.id}))
 
     context={'form':form }
@@ -246,7 +246,7 @@ def LoginVC(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request,username=username,password=password)
-        if user is not None:
+        if user is not None and user.is_staff==True:
             login(request,user)
             centre = models.TestCentre.objects.get(user=user)
             return HttpResponseRedirect(reverse('dashboard',kwargs={'pk':centre.id}))

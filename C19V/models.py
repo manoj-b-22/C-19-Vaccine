@@ -32,7 +32,7 @@ class VaccinatedPerson(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.OneToOneField(TestCentre,on_delete=models.CASCADE)
+    centre = models.CharField(max_length=50)
 
     @property
     def age(self):
