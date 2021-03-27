@@ -1,4 +1,3 @@
-from django.db.models import fields
 from . import models
 from django import forms
 from django.forms import ModelForm
