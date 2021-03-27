@@ -179,8 +179,8 @@ def faqsvc(request,pk):
     faq = models.FAQ.objects.all()
 
     if request.method == 'POST':
-        id = request.POST.get("id")
-        faqd = models.FAQ.objects.get(id=id)
+        no = request.POST.get('id')
+        faqd = models.FAQ.objects.get(id=no)
         faqd.delete()
         return redirect('faqVC',pk=pk)
 
