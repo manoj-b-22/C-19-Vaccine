@@ -2,12 +2,16 @@
 {% load static %}
 
 {% block content %}
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static '/css/faq.css' %}">
-<script src="{% static '/js/faq.js' %}" ></script> 
-<center><h2>Frequently Asked Questions</h2></center>
+<script src="{% static '/js/faq.js' %}" ></script><br>
+<center><h2>Frequently Asked Questions</h2></center><br>
 
-<div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
+<div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage" >
    
     <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <h2 class="faq-question"  itemprop="name" >What is the return policy?</h2>
@@ -15,7 +19,9 @@
             <div itemprop="text">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            a type specimen book.<button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;"><b>Update Faq</b></button><button
+                type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;"><b>Delete Faq</b></button>
+           
             </div>
         </div>
     </div>
@@ -27,11 +33,11 @@
             Lorem Ipsum is simply dummy text of the prinhdjgfsdhgfnm
             ting and typesetting industry. Lorem Ipsum has been the industry's 
             standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a type specimen book.
+            a type specimen book.<button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;"><b>Update Faq</b></button><button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;"><b>Delete Faq</b></button>
             </div>
         </div>
-    </div>
+    </div><br><div style="text-align: center;"><button type="button" class="btn btn-dark"><b>Add Faq</b></button></div>
+    
 </div>
 
- 
 {% endblock %}

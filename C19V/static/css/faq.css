@@ -1,5 +1,7 @@
 .faqs-container {
     overflow: hidden;
+    width:60%;
+    margin-left: 20%;
 }
 
 .faq-singular {
@@ -11,7 +13,7 @@
 .faq-singular:hover,
 .faq-singular.active {
     background: #f2f2f2;
-    background-image: linear-gradient(90deg, #335548 0%, #335548 8px, transparent 8px, transparent 100%);
+    background-image: linear-gradient(90deg, black 0%, black 8px, transparent 8px, transparent 100%);
 }
 
 .faq-singular .faq-question {
