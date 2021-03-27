@@ -12,16 +12,14 @@
 <br>
 <center><h2>Frequently Asked Questions</h2></center>
 <br>
-
 <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage" >
-    
     {% for faq in faqs %}
     <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <h2 class="faq-question"  itemprop="name"> {{faq.question}} </h2>
         <div class="faq-answer" itemscope  itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <div itemprop="text">
                 {{faq.answer}}
-                {% if block == "VC" %}
+                {% if User != 'Patient' %}
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;"><b>Update Faq</b></button>
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;"><b>Delete Faq</b></button>
                 {% endif %}
@@ -31,7 +29,7 @@
     {% endfor %}
 </div>   
 <br>
-{% if block == "VC" %}    
+{% if User == 'VC' %}    
     <div style="text-align: center;"><button type="button" class="btn btn-dark"><b>Add Faq</b></button></div>
 {% endif %}
 
