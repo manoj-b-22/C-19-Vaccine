@@ -178,6 +178,12 @@ def faqsvc(request,pk):
     person = models.TestCentre.objects.get(id=pk)
     faq = models.FAQ.objects.all()
 
+    if request.method == 'POST':
+        id = request.POST.get("id")
+        faqd = models.FAQ.objects.get(id=id)
+        faqd.delete()
+        return redirect('faqVC',pk=pk)
+
     context={'nbar':'faqVC','User':'VC','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
@@ -208,18 +214,7 @@ def updatefaq(request,pk,id):
             return redirect('faqVC',pk=pk)
 
     context={'form':form,'state':'update'}
-    return render(request,'faqform.html',context)  
-
-@decorators.VC_required(login_url='loginvc')
-def deletefaq(request,pk,id):
-    faq = models.FAQ.objects.get(id=id)
-
-    if request.method=='POST':
-        faq.delete()
-        return redirect('faqVC',pk=pk)
-
-    context={'item':faq,'pk':pk}
-    return render(request,'faqdelete.html',context)         
+    return render(request,'faqform.html',context)
 
 @decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):

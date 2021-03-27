@@ -24,8 +24,19 @@
                     <a href="{% url 'update_faq' person.id faq.id %}" class="text-warning" ><b>Update Faq</b></a>
                 </button>
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;">
-                    <a href="{% url 'delete_faq' person.id faq.id %}" class="text-danger"><b>Delete Faq</b></a>
+                   <b>Delete Faq</b>
                 </button>
+                <div>
+                    <p>Are you sure you want to delete this FAQ?</p>
+                    <p>{{item.question}}</p>
+                    
+                    <form action='' method='POST'>
+                        {% csrf_token %}
+                        <button>Cancel</button>
+                        <input type="submit" value='Yes'>
+                        <input type="text" name="id" value="{{item.id}}" style="">
+                    </form>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -33,7 +44,7 @@
     {% endfor %}
 </div>   
 <br>
-{% if User == 'VC' %}    
+{% if User == 'VC' %}
     <div style="text-align: center;"><button type="button" class="btn btn-dark">
         <a href="{% url 'add_faq' person.id %}" class="text-info" ><b>Add Faq</b></a>
     </button></div>
