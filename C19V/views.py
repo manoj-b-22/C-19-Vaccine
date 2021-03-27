@@ -89,7 +89,6 @@ def faqs(request,pk):
     faq = models.FAQ.objects.all()
 
     context={'nbar':'faq','block':'Patient','faqs':faq,'person':person}
-    context={'nbar':'faq','block':'Patient','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
