@@ -21,7 +21,7 @@
         <div class="faq-answer" itemscope  itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <div itemprop="text">
                 {{faq.answer}}
-                {% if block=='VC' %}
+                {% if block == "VC" %}
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;"><b>Update Faq</b></button>
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;"><b>Delete Faq</b></button>
                 {% endif %}
@@ -31,7 +31,7 @@
     {% endfor %}
 </div>   
 <br>
-{% if block=='VC' %}    
+{% if block == "VC" %}    
     <div style="text-align: center;"><button type="button" class="btn btn-dark"><b>Add Faq</b></button></div>
 {% endif %}
 
