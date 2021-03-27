@@ -172,7 +172,7 @@ def showvc(request,pk):
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
 
-@decorators.patient_required(login_url='loginvc')
+@decorators.VC_required(login_url='loginvc')
 def faqsvc(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
