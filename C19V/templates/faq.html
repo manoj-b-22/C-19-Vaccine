@@ -4,6 +4,34 @@
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{% static '/css/faq.css' %}">
-<script src="{% static '/js/faq.js' %}" ></script>
+<script src="{% static '/js/faq.js' %}" ></script> 
+<center><h2>Frequently Asked Questions</h2></center>
 
+<div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
+   
+    <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 class="faq-question"  itemprop="name" >What is the return policy?</h2>
+        <div class="faq-answer" itemscope  itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            a type specimen book.
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-singular" itemscope>
+        <h2 class="faq-question">What is the return value?</h2>
+        <div class="faq-answer" itemscope>
+            <div itemprop="text">
+            Lorem Ipsum is simply dummy text of the prinhdjgfsdhgfnm
+            ting and typesetting industry. Lorem Ipsum has been the industry's 
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            a type specimen book.
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
 {% endblock %}
