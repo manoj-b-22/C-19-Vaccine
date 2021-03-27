@@ -88,7 +88,8 @@ def faqs(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     faq = models.FAQ.objects.all()
 
-    context={'block':'Patient','faqs':faq,'person':person}
+    context={'nbar':'faq','block':'Patient','faqs':faq,'person':person}
+    context={'nbar':'faq','block':'Patient','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
@@ -178,7 +179,7 @@ def faqsvc(request,pk):
     person = models.TestCentre.objects.get(id=pk)
     faq = models.FAQ.objects.all()
 
-    context={'block':'VC','faqs':faq,'person':person}
+    context={'nbar':'faqVC','block':'VC','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
