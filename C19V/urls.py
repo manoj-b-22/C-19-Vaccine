@@ -12,7 +12,6 @@ urlpatterns = [
     path('vc/faq/<str:pk>/',views.faqsvc,name='faqVC'),
     path('vc/faq/<str:pk>/add/',views.addfaq,name='add_faq'),
     path('vc/faq/<str:pk>/update/<str:id>/',views.updatefaq,name='update_faq'),
-    path('vc/faq/<str:pk>/delete/<str:id>/',views.deletefaq,name='delete_faq'),
     path('login/', views.LoginPatient, name="login"),
     path('vc/report/<str:pk>/registerperson/',views.register,name='register'),
     path('logout/',views.LogoutPatient,name='logout'),
