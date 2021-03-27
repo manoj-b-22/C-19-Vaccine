@@ -12,7 +12,6 @@ from . import models
 from . import forms  
 from . import decorators
 
-# Create your views here.
 
 @decorators.patient_required(login_url='login')
 def home(request,pk):
@@ -76,12 +75,21 @@ def stats(request,pk):
     percent=[]
     for cen in centres:
         k = people.filter(centre=cen.name).count()
-        res = int( k/people.count()*100)
+        res = int(k/people.count()*100)
         percent.append(res)
     people = people.count()        
 
     context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres,'percent':percent}
     return render(request, 'statistics.html', context)
+
+@decorators.patient_required(login_url='login')
+def faqs(request,pk):
+
+    person = models.VaccinatedPerson.objects.get(id=pk)
+    faq = models.FAQ.objects.all()
+
+    context={'block':'Patient','faqs':faq,'person':person}
+    return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
 def dashboard(request,pk):
@@ -163,6 +171,15 @@ def showvc(request,pk):
 
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
+
+@decorators.patient_required(login_url='loginvc')
+def faqsvc(request,pk):
+
+    person = models.TestCentre.objects.get(id=pk)
+    faq = models.FAQ.objects.all()
+
+    context={'block':'VC','faqs':faq,'person':person}
+    return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):
