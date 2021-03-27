@@ -182,6 +182,46 @@ def faqsvc(request,pk):
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
+def addfaq(request,pk):
+
+    form = forms.FAQForm()
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form, 'state':'add'}
+    return render(request,'faqform.html',context)
+
+@decorators.VC_required(login_url='loginvc')
+def updatefaq(request,pk,id):
+
+    faq = models.FAQ.objects.get(id=id)
+    form = forms.FAQForm(instance=faq)
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST,instance=faq)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form,'state':'update'}
+    return render(request,'faqform.html',context)  
+
+@decorators.VC_required(login_url='loginvc')
+def deletefaq(request,pk,id):
+    faq = models.FAQ.objects.get(id=id)
+
+    if request.method=='POST':
+        faq.delete()
+        return redirect('faqVC',pk=pk)
+
+    context={'item':faq,'pk':pk}
+    return render(request,'faqdelete.html',context)         
+
+@decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)

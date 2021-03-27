@@ -1,0 +1,14 @@
+{% load static %}
+
+{% if state == 'add' %}
+<h1>Add FAQ</h1>
+{% else %}
+<h1>Update FAQ</h1>
+{% endif %}
+
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type='submit' value='Submit'>
+</form>
+

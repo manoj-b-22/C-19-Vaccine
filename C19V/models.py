@@ -54,4 +54,4 @@ class Status(models.Model):
 
 class FAQ(models.Model):
     question = models.TextField(max_length=100)
-    answer = models.TextField(max_length=250)
+    answer = models.TextField(max_length=500)

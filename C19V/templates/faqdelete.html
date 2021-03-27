@@ -1,0 +1,10 @@
+{% load static %}
+
+<p>Are you sure you want to delete this FAQ?</p>
+<p>{{item.question}}</p>
+
+<form action='' method='POST' >
+    {% csrf_token %}
+    <a href="{% url 'faqVC' pk %}" >Cancel</a>
+    <input type="submit" value='Yes'>
+</form>

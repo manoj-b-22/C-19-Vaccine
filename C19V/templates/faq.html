@@ -20,8 +20,12 @@
             <div itemprop="text">
                 {{faq.answer}}
                 {% if User != 'Patient' %}
-                <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;"><b>Update Faq</b></button>
-                <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;"><b>Delete Faq</b></button>
+                <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;">
+                    <a href="{% url 'update_faq' person.id faq.id %}" class="text-warning" ><b>Update Faq</b></a>
+                </button>
+                <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;">
+                    <a href="{% url 'delete_faq' person.id faq.id %}" class="text-danger"><b>Delete Faq</b></a>
+                </button>
                 {% endif %}
             </div>
         </div>
@@ -30,7 +34,9 @@
 </div>   
 <br>
 {% if User == 'VC' %}    
-    <div style="text-align: center;"><button type="button" class="btn btn-dark"><b>Add Faq</b></button></div>
+    <div style="text-align: center;"><button type="button" class="btn btn-dark">
+        <a href="{% url 'add_faq' person.id %}" class="text-info" ><b>Add Faq</b></a>
+    </button></div>
 {% endif %}
 
 {% endblock %}
