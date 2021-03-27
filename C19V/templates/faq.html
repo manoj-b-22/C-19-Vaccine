@@ -8,48 +8,67 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="{% static '/css/faq.css' %}">
-<script src="{% static '/js/faq.js' %}" ></script>
+<script src="{% static '/js/faq.js' %}"></script>
 <br>
-<center><h2 id="header">Frequently Asked Questions</h2></center>
+<center>
+    <h2 id="header">Frequently Asked Questions</h2>
+</center>
 <br>
-<div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage" >
+<div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
     {% for faq in faqs %}
     <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h2 class="faq-question"  itemprop="name"> {{faq.question}} </h2>
-        <div class="faq-answer" itemscope  itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <h2 class="faq-question" itemprop="name"> {{faq.question}} </h2>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <div itemprop="text">
                 {{faq.answer}}
                 {% if User != 'Patient' %}
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;">
-                    <a href="{% url 'update_faq' person.id faq.id %}" class="text-warning" ><b>Update Faq</b></a>
+                    <a href="{% url 'update_faq' person.id faq.id %}" class="text-warning"><b>Update Faq</b></a>
                 </button>
-                <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-right: 1%;margin-top:1%;">
-                   <b>Delete Faq</b>
+                <button type="button" class="btn btn-outline-dark btn-sm"
+                    style="float:right;margin-right: 1%;margin-top:1%;" onclick="openForm()">
+                    <b>Delete Faq</b>
                 </button>
-                <div>
-                    <p>Are you sure you want to delete this FAQ?</p>
-                    <p>{{faq.question}}</p>
-                    <form action='' method='POST'>
-                        {% csrf_token %}
-                        <button>Cancel</button>
-                        <input type="submit" value='Yes'>
-                        <div style="display: none;" >
-                            <label for='id'>Id</label>
-                            <input type="text" name="id" value={{faq.id}}>
-                        </div>
-                    </form>
+                <div class="form-popup" id="myForm" style="margin-right: 38%;margin-bottom:20%;border-style: double;background-color: black;color:aliceblue;border-radius:5px;"><br>
+                   
+                        <p style="font-weight: bold;">&nbsp;&nbsp; Are you sure you want to delete this FAQ?&nbsp;&nbsp;</p>
+                        <p>&nbsp;&nbsp;&nbsp;{{faq.question}}</p>
+                        <form action='' method='POST'>
+                            {% csrf_token %}
+                            <button class="btn btn-dark" style="margin-left: 10%;width:30%"><b>Cancel</b></button>
+                            <input type="submit" value='Delete' class="btn btn-dark;" style="background-color:#343a40;font-weight: bold;color:white;margin-left: 18%;width:30%">
+                            <div style="display: none;">
+                                <label for='id'>Id</label>
+                                <input type="text" name="id" value={{faq.id}}>
+                            </div>
+                        </form><br>
+                   
+                    
                 </div>
+               
+                
                 {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
-</div>   
+</div>
 <br>
 {% if User == 'VC' %}
-    <div style="text-align: center;"><button type="button" class="btn btn-dark">
-        <a href="{% url 'add_faq' person.id %}" class="text-info" ><b>Add Faq</b></a>
+<div style="text-align: center;"><button type="button" class="btn btn-dark">
+        <a href="{% url 'add_faq' person.id %}" class="text-info"><b>Add Faq</b></a>
     </button></div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
 {% endif %}
+
 
 {% endblock %}
