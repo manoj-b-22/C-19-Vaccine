@@ -92,6 +92,10 @@ def faqs(request,pk):
     context={'nbar':'faq','User':'Patient','faqs':faq,'person':person,'centre':centre}
     return render(request,'faq.html',context)    
 
+def nearby(request):
+
+    return render(request,'nearbyvc.html')
+
 @decorators.VC_required(login_url='loginvc')
 def dashboard(request,pk):
     

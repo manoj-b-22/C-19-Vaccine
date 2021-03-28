@@ -6,6 +6,7 @@ urlpatterns = [
     path('healthreport/<str:pk>/', views.health, name="health"),
     path('statistics/<str:pk>/', views.stats, name='stats'),
     path('faq/<str:pk>/',views.faqs,name='faq'),
+    path('nearby/vc/',views.nearby,name='nearbyvc'),
     path('vc/home/<str:pk>/', views.dashboard, name="dashboard"),
     path('vc/report/<str:pk>/', views.report, name="report"),
     path('vc/statistics/<str:pk>/', views.statsVC, name='statsVC'),
