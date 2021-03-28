@@ -1,0 +1,137 @@
+
+#scr h2{
+    color: #666;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+
+}
+#scr p{
+    color: #666;
+    font-size: 1.2em;
+}
+#scr::-webkit-scrollbar{
+    width: 12px;
+}
+#scr::-webkit-scrollbar-thumb{
+    background: linear-gradient(transparent,white );
+    border-radius: 6px;
+}
+#scr::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent,#24a0ed);
+
+}
+body {
+    background-color: black;
+}
+
+
+.faqs-container {
+    overflow: hidden;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.faq-singular {
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    padding: 0 30px 0 20px;
+}
+
+.faq-singular:hover,
+.faq-singular.active {
+    background: #f2f2f2;
+    background-image: linear-gradient(90deg, black 0%, black 8px, transparent 8px, transparent 100%);
+}
+
+.faq-singular .faq-question {
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+    padding: 25px 25px 25px 0px;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.faq-singular .faq-question:before {
+    position: absolute;
+    content: "+";
+    color: #808080;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    font-weight: 700;
+    transition: all .5s;
+}
+
+.faq-singular.active .faq-question:before {
+    transform: translateY(-50%) rotate(45deg) scale(1.3);
+}
+
+.faq-answer {
+    display: none;
+    padding-bottom: 20px;
+}
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+.form-container input[type=text],
+.form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus,
+.form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.form-container .btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.form-container .cancel {
+    background-color: red;
+}
+
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}

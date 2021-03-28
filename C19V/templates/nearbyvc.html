@@ -6,22 +6,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C19 Vaccine</title>
-    
+    <script src="https://kit.fontawesome.com/f8b62a635e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/css/nearby.css' %}">
     <script src="{% static '/js/nearby.js' %}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body>
-<h1 style="text-align: center;">Nearby Vaccination Centres</h1>
-<div style="width:35%;height:690px;margin-left:20px;float:left;background-color: black;">
-    
+<body style="background-color: black;">
+<h1 style="text-align: center;background-color:black;color:white;margin-top: 0.5%;margin-bottom: 0.5%;"><b>Nearby Vaccination Centres</b></h1>
+<div id="scr" style="width:25%;height:690px;border-left:solid 8px;border-radius: 5px ;border-color: white;float:left;background-color: black;float:left; max-height: 50%;
+    overflow-y: scroll;"><h1 style="text-align: center;background-color: black;color:aliceblue;border-top: solid 5px white;"><b>Hospitals</b></h1>
+    <table class="table table-dark table-striped ">
+      
+        <tbody>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"  onclick="openForm()"><b><i class="fas fa-hospital-user"></i>&nbsp;Shwetha Hospitals</b></button></td>
+                
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><b><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i>Sita Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Divya Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Meghana Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Suswara Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Tanvi Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp<b>Sreya Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Sravani Hospitals</b></button></td>
+               
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp<b>Harshitha Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Keerthi(IIITSshwetha) Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Saraswathi Hospitals</b></button></td>
+            
+            </tr>
+            <tr>
+                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Saraswathi Hospitals</b></button></td>
+            
+            </tr>
+           
+        </tbody>
+    </table>
+   
 </div>
-<div id="googleMap" style="width:60%;height:690px;float:right;"></div>
+<div class="form-popup" id="myForm" style="margin-right: 23%;margin-bottom:15%;border-style: double;border:solid 5px;border-color: white;background-color: black;color:aliceblue;border-radius:5px;margin-top: 30%;">
+    <i class="fas fa-times" onclick="closeForm()" style="position: absolute;margin-top:1%;margin-right: 1%;right:0px;"></i><br><h3 style="text-align: center;">Details</h3>
+    <table class="table table-borderless">
+      
+        <tbody>
+            <tr style="color:aliceblue;text-align: center;">
+                <td>Vaccination-Center Name :</td>
+                <td>Swetha Hospitals</td>
+               
+            </tr>
+            <tr style="color:aliceblue;text-align: center;">
+                <td>Phone Number :</td>
+                <td>9491728288</td>
+            </tr>
+            <tr style="color:aliceblue;text-align: center;">
+                <td>Address :</td>
+                <td>7-G brundavanam Colony</td>
+                
+            </tr>
+            <tr style="color:aliceblue;text-align: center;">
+                <td>City :</td>
+                <td>Hyderabad</td>
+            
+            </tr>
+            <tr style="color:aliceblue;text-align: center;">
+                <td>State :</td>
+                <td>Telangana</td>
+            
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="googleMap"  style="width:75%;height:690px;float:right;">
+     
+
+</div>
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
+<script>
+    function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
 
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+</script>
 </body>
 
 </html>
