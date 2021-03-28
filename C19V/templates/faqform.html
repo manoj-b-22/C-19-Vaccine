@@ -1,0 +1,56 @@
+{% load static %}
+
+{% if state == 'add' %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script><br>
+<h1 style="font-family: sans-serif;text-align: center;"><b>Add FAQ</b></h1>
+{% else %}
+<h1>Update FAQ</h1>
+{% endif %}
+<div class="container" style="text-align: center;">
+    <form action='' method='POST'>
+        {% csrf_token %}
+        <table class="table table-dark table-hover table-bordered">
+            <thead>
+                <tr style="background-color: #26252b;text-align: center;font-size: larger;">
+                    <th>
+                        <b>Question</b>
+                    </th>
+                    <th>
+                        <b>Answer</b>
+                    </th>
+    
+                </tr>
+               
+            </thead>
+            <tbody>
+                <tr style="text-align: center;">
+                    <td>
+                        {{ form.question }}
+                    </td>
+                    <td>
+                        {{ form.answer}}
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    <!--<label for="question"><b>Question:</b> </label>
+                        {{ form.question }}<label for="answer"><b>Answer:</b> </label>
+                        {{ form.answer}}-->
+    
+    
+        <input type='submit' value='Submit' style="background-color: #26252b;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;border-radius: 4%;font-weight: bold;">
+    </form>
+
+
+</div>
+

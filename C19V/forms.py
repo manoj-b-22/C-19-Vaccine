@@ -39,6 +39,11 @@ class StatusForm(ModelForm):
         model = models.Status
         fields='__all__'
 
+class FAQForm(ModelForm):
+    class Meta:
+        model = models.FAQ
+        fields='__all__'
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User

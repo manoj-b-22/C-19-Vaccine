@@ -88,7 +88,7 @@ def faqs(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     faq = models.FAQ.objects.all()
 
-    context={'nbar':'faq','block':'Patient','faqs':faq,'person':person}
+    context={'nbar':'faq','User':'Patient','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
@@ -172,14 +172,49 @@ def showvc(request,pk):
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
 
-@decorators.patient_required(login_url='loginvc')
+@decorators.VC_required(login_url='loginvc')
 def faqsvc(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
     faq = models.FAQ.objects.all()
 
-    context={'nbar':'faqVC','block':'VC','faqs':faq,'person':person}
+    if request.method == 'POST':
+        no = request.POST.get('id')
+        faqd = models.FAQ.objects.get(id=no)
+        faqd.delete()
+        return redirect('faqVC',pk=pk)
+
+    context={'nbar':'faqVC','User':'VC','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
+
+@decorators.VC_required(login_url='loginvc')
+def addfaq(request,pk):
+
+    form = forms.FAQForm()
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form, 'state':'add'}
+    return render(request,'faqform.html',context)
+
+@decorators.VC_required(login_url='loginvc')
+def updatefaq(request,pk,id):
+
+    faq = models.FAQ.objects.get(id=id)
+    form = forms.FAQForm(instance=faq)
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST,instance=faq)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form,'state':'update'}
+    return render(request,'faqform.html',context)
 
 @decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):

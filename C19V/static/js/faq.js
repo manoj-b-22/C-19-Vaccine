@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $(".faqs-container .faq-singular:first-child").addClass("active").children(".faq-answer").slideDown();
     $(".faq-question").on("click", function() {
         if ($(this).parent().hasClass("active")) {
             $(this).next().slideUp();
@@ -12,3 +11,5 @@ $(document).ready(function() {
         }
     });
 });
+
+
