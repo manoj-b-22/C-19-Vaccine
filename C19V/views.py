@@ -86,9 +86,10 @@ def stats(request,pk):
 def faqs(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
+    centre = models.TestCentre.objects.get(name=person.centre)
     faq = models.FAQ.objects.all()
 
-    context={'nbar':'faq','User':'Patient','faqs':faq,'person':person}
+    context={'nbar':'faq','User':'Patient','faqs':faq,'person':person,'centre':centre}
     return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
