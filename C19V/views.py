@@ -12,7 +12,6 @@ from . import models
 from . import forms  
 from . import decorators
 
-# Create your views here.
 
 @decorators.patient_required(login_url='login')
 def home(request,pk):
@@ -76,12 +75,22 @@ def stats(request,pk):
     percent=[]
     for cen in centres:
         k = people.filter(centre=cen.name).count()
-        res = int( k/people.count()*100)
+        res = int(k/people.count()*100)
         percent.append(res)
     people = people.count()        
 
     context = {'nbar': 'stats' , 'block':'Patient','person':person,'filter':myFilter,'people':people,'centre':centres,'percent':percent}
     return render(request, 'statistics.html', context)
+
+@decorators.patient_required(login_url='login')
+def faqs(request,pk):
+
+    person = models.VaccinatedPerson.objects.get(id=pk)
+    centre = models.TestCentre.objects.get(name=person.centre)
+    faq = models.FAQ.objects.all()
+
+    context={'nbar':'faq','User':'Patient','faqs':faq,'person':person,'centre':centre}
+    return render(request,'faq.html',context)    
 
 @decorators.VC_required(login_url='loginvc')
 def dashboard(request,pk):
@@ -163,6 +172,50 @@ def showvc(request,pk):
 
     context={'person':person,'count':count}
     return render(request,'showcentre.html',context)
+
+@decorators.VC_required(login_url='loginvc')
+def faqsvc(request,pk):
+
+    person = models.TestCentre.objects.get(id=pk)
+    faq = models.FAQ.objects.all()
+
+    if request.method == 'POST':
+        no = request.POST.get('id')
+        faqd = models.FAQ.objects.get(id=no)
+        faqd.delete()
+        return redirect('faqVC',pk=pk)
+
+    context={'nbar':'faqVC','User':'VC','faqs':faq,'person':person}
+    return render(request,'faq.html',context)    
+
+@decorators.VC_required(login_url='loginvc')
+def addfaq(request,pk):
+
+    form = forms.FAQForm()
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form, 'state':'add'}
+    return render(request,'faqform.html',context)
+
+@decorators.VC_required(login_url='loginvc')
+def updatefaq(request,pk,id):
+
+    faq = models.FAQ.objects.get(id=id)
+    form = forms.FAQForm(instance=faq)
+
+    if request.method=='POST':
+        form = forms.FAQForm(request.POST,instance=faq)
+        if form.is_valid():
+            form.save()
+            return redirect('faqVC',pk=pk)
+
+    context={'form':form,'state':'update'}
+    return render(request,'faqform.html',context)
 
 @decorators.VC_required(login_url='loginvc')
 def statsVC(request,pk):

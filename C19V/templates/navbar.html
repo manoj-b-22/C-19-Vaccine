@@ -19,6 +19,9 @@
       <li class="nav-item {% if nbar == 'stats' %}active{% endif %}">
         <a class="nav-link" href="{% url 'stats' person.id %}">Statistics of Vaccinated People </a>
       </li> 
+      <li class="nav-item {% if nbar == 'faq' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'faq' person.id %}">FAQS </a>
+      </li>
 
       {% else %}
 
@@ -31,7 +34,9 @@
       <li class="nav-item {% if nbar == 'statsVC' %}active{% endif %}">
         <a class="nav-link" href="{% url 'statsVC' person.id %}">Statistics of Vaccinated People </a>
       </li> 
-
+      <li class="nav-item {% if nbar == 'faqVC' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'faqVC' person.id %}">FAQS </a>
+      </li>
       {% endif %}
     </ul>
   </div>

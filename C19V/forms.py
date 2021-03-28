@@ -1,4 +1,3 @@
-from django.db.models import fields
 from . import models
 from django import forms
 from django.forms import ModelForm
@@ -38,6 +37,11 @@ class TestCentreForm(ModelForm):
 class StatusForm(ModelForm):
     class Meta:
         model = models.Status
+        fields='__all__'
+
+class FAQForm(ModelForm):
+    class Meta:
+        model = models.FAQ
         fields='__all__'
 
 class CreateUserForm(UserCreationForm):
