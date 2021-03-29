@@ -332,8 +332,6 @@ def register(request,pk):
         form.is_staff=False
         if form.is_valid():
             user = form.save()
-            person = models.VaccinatedPerson.objects.create(user=user)
-            person.save()
             return HttpResponseRedirect(reverse('create_person',kwargs={'pk':pk,'user':user.id}))
 
     context={'form':form }
@@ -375,8 +373,6 @@ def registerVC(request):
             user = form.save(commit=False)
             user.is_staff=True
             user.save()
-            centre = models.TestCentre.objects.create(user=user)
-            centre.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)
             return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))
