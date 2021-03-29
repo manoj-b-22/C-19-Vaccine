@@ -259,12 +259,13 @@ def statsVC(request,pk):
 
 @decorators.VC_required(login_url='loginvc')
 def createPerson(request,pk,user):
-    person = models.TestCentre.objects.get(id=pk)
+    centre = models.TestCentre.objects.get(id=pk)
     user1 = User.objects.get(id=user)
-    form = forms.PersonForm(initial={'centre':person.name,'user':user1}) 
+    person = models.VaccinatedPerson.objects.get(user=user1)
+    form = forms.PersonForm(instance=person,initial={'centre':centre.name}) 
 
     if request.method == 'POST':
-        form = forms.PersonForm(request.POST)
+        form = forms.PersonForm(request.POST,instance=person)
         if form.is_valid():
             form.save()
             return redirect('report',pk=pk)
@@ -274,11 +275,11 @@ def createPerson(request,pk,user):
 
 def registerCentre(request,user):
     user1 = User.objects.get(id=user)
-    form = forms.TestCentreForm(initial={'user':user1})
+    centre = models.TestCentre.objects.get(user=user1)
+    form = forms.TestCentreForm(instance=centre)
 
     if request.method == 'POST':
-        form = forms.TestCentreForm(request.POST)
-        form.user=user1
+        form = forms.TestCentreForm(request.POST,instance=centre)
         if form.is_valid():
             form.save()
             return redirect('loginvc')
@@ -331,6 +332,8 @@ def register(request,pk):
         form.is_staff=False
         if form.is_valid():
             user = form.save()
+            person = models.VaccinatedPerson.objects.create(user=user)
+            person.save()
             return HttpResponseRedirect(reverse('create_person',kwargs={'pk':pk,'user':user.id}))
 
     context={'form':form }
@@ -372,6 +375,8 @@ def registerVC(request):
             user = form.save(commit=False)
             user.is_staff=True
             user.save()
+            centre = models.TestCentre.objects.create(user=user)
+            centre.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)
             return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))

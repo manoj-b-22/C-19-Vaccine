@@ -5,15 +5,15 @@ from django.contrib.auth.models import User
 # Create your models here.
 class TestCentre(models.Model):
     user = models.OneToOneField(User,on_delete=CASCADE)
-    name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=25)
-    phone_no =models.CharField(max_length=10)
-    address = models.TextField(max_length=128)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    pincode = models.CharField(max_length=6)
-    active_time_from = models.TimeField() #From
-    active_time_to = models.TimeField()   #To
+    name = models.CharField(max_length=50,null=True)
+    email = models.EmailField(max_length=25,null=True)
+    phone_no =models.CharField(max_length=10,null=True)
+    address = models.TextField(max_length=128,null=True)
+    city = models.CharField(max_length=50,null=True)
+    state = models.CharField(max_length=50,null=True)
+    pincode = models.CharField(max_length=6,null=True)
+    active_time_from = models.TimeField(null=True) #From
+    active_time_to = models.TimeField(null=True)   #To
 
     def __str__(self):
         return self.name
@@ -24,15 +24,15 @@ class VaccinatedPerson(models.Model):
     GENDER_CHOICES = (('M','Male'),('F','Female'))
 
     user = models.OneToOneField(User,on_delete=CASCADE)
-    name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
-    dob = models.DateField()
-    phone_no =models.CharField(max_length=10)
-    address = models.TextField(max_length=128)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    name = models.CharField(max_length=50,null=True)
+    gender = models.CharField(max_length=1,choices=GENDER_CHOICES,null=True)
+    dob = models.DateField(null=True)
+    phone_no =models.CharField(max_length=10,null=True)
+    address = models.TextField(max_length=128,null=True)
+    city = models.CharField(max_length=50,null=True)
+    state = models.CharField(max_length=50,null=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.CharField(max_length=50)
+    centre = models.CharField(max_length=50,null=True)
 
     @property
     def age(self):

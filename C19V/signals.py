@@ -13,4 +13,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+    if not User.is_staff:
+        instance.vaccinatedperson.save()
+    if User.is_staff:
+        instance.testcentre.save()
