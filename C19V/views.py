@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from . import filters
@@ -12,6 +11,10 @@ from . import models
 from . import forms  
 from . import decorators
 
+
+def main(request):
+
+    return render(request,'home.html')
 
 @decorators.patient_required(login_url='login')
 def home(request,pk):
@@ -32,7 +35,7 @@ def home(request,pk):
     red = int((red/total)*100)
 
     context = {'nbar': 'home' , 'block':'Patient','person':person,'status':status,'green':green,'red':red,'yellow':yellow}
-    return render(request, 'patient_home.html', context)
+    return render(request, 'patient_home.html', context)    
 
 @decorators.patient_required(login_url='login')
 def health(request,pk):
@@ -275,7 +278,27 @@ def registerCentre(request,user):
             return redirect('loginvc')
 
     dic = {'form':form}
-    return render(request,'registercentre.html',dic)    
+    return render(request,'registercentre.html',dic)
+
+@decorators.VC_required(login_url='loginvc')
+def editprofile(request,pk):
+    centre = models.TestCentre.objects.get(id=pk)
+    form = forms.TestCentreForm(instance=centre)
+    persons = models.VaccinatedPerson.objects.filter(centre=centre.name)
+
+    if request.method == 'POST':
+        form = forms.TestCentreForm(request.POST,instance=centre)
+        name = request.POST.get('name')
+        if name != centre.name :
+            for person in persons:
+                person.centre = name
+                person.save()
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard',pk=pk)
+
+    dic = {'form':form,'update':True}
+    return render(request,'registercentre.html',dic)
 
 def LoginPatient(request):
 

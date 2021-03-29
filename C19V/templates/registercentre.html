@@ -3,7 +3,11 @@
 <link rel="stylesheet-+69" href='{% static "css/registercentre.css" %}'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<br><h2 style="text-align:center;">Register Your Vaccinated Centre</h2><br><br>
+{% if update %}
+    <br><h2 style="text-align:center;">Edit Profile Details</h2><br><br>
+{% else %}
+    <br><h2 style="text-align:center;">Register Your Vaccinated Centre</h2><br><br>
+{% endif %}
 <div class="container">
     <form action="" method="POST">
         {% csrf_token %}
