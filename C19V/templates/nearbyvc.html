@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,117 +10,154 @@
     <script src="https://kit.fontawesome.com/f8b62a635e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static '/css/nearby.css' %}">
     <script src="{% static '/js/nearby.js' %}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body style="background-color: black;">
-<h1 style="text-align: center;background-color:black;color:white;margin-top: 0.5%;margin-bottom: 0.5%;"><b>Nearby Vaccination Centres</b></h1>
-<div id="scr" style="width:25%;height:690px;border-left:solid 8px;border-radius: 5px ;border-color: white;float:left;background-color: black;float:left; max-height: 50%;
-    overflow-y: scroll;"><h1 style="text-align: center;background-color: black;color:aliceblue;border-top: solid 5px white;"><b>Hospitals</b></h1>
-    <table class="table table-dark table-striped ">
-      
-        <tbody>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"  onclick="openForm()"><b><i class="fas fa-hospital-user"></i>&nbsp;Shwetha Hospitals</b></button></td>
-                
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><b><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i>Sita Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Divya Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Meghana Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Suswara Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Tanvi Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp<b>Sreya Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Sravani Hospitals</b></button></td>
-               
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp<b>Harshitha Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Keerthi(IIITSshwetha) Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i class="fas fa-hospital-user"></i>&nbsp;<b>Saraswathi Hospitals</b></button></td>
-            
-            </tr>
-            <tr>
-                <td><button type="button" class="btn btn-primary btn-block"><i style="margin-right: 2%;" class="fas fa-hospital-alt">&nbsp;</i><b>Saraswathi Hospitals</b></button></td>
-            
-            </tr>
-           
-        </tbody>
-    </table>
-   
-</div>
-<div class="form-popup" id="myForm" style="margin-right: 23%;margin-bottom:15%;border-style: double;border:solid 5px;border-color: white;background-color: black;color:aliceblue;border-radius:5px;margin-top: 30%;">
-    <i class="fas fa-times" onclick="closeForm()" style="position: absolute;margin-top:1%;margin-right: 1%;right:0px;"></i><br><h3 style="text-align: center;">Details</h3>
-    <table class="table table-borderless">
-      
-        <tbody>
-            <tr style="color:aliceblue;text-align: center;">
-                <td>Vaccination-Center Name :</td>
-                <td>Swetha Hospitals</td>
-               
-            </tr>
-            <tr style="color:aliceblue;text-align: center;">
-                <td>Phone Number :</td>
-                <td>9491728288</td>
-            </tr>
-            <tr style="color:aliceblue;text-align: center;">
-                <td>Address :</td>
-                <td>7-G brundavanam Colony</td>
-                
-            </tr>
-            <tr style="color:aliceblue;text-align: center;">
-                <td>City :</td>
-                <td>Hyderabad</td>
-            
-            </tr>
-            <tr style="color:aliceblue;text-align: center;">
-                <td>State :</td>
-                <td>Telangana</td>
-            
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div id="googleMap"  style="width:75%;height:690px;float:right;">
-     
+    <h1 style="text-align: center;background-color:black;color:white;margin-top: 0.5%;margin-bottom: 0.5%;"><b>Nearby
+            Vaccination Centres</b></h1>
+    <div id="scr" style="width:25%;height:690px;border-left:solid 8px;border-radius: 5px ;border-color:#666666;float:left;background-color: black;float:left; max-height: 50%;
+    overflow-y: scroll;">
+        <h1 style="text-align: center;background-color: black;color:aliceblue;border-top: solid 5px #666666;">
+            <b>Hospitals</b></h1>
+        <div class="container-fluid">
+                    <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
+                    
+                        <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="">
+                            <h2 class="faq-question" itemprop="name" style="text-align: center;color:white;"><b><i class="fas fa-hospital-user" style="color:white;"></i>&nbsp;&nbsp;Swetha Hospitals</b></h2>
+                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                <h3 style="text-align: center;color:white;font-weight: bold;">Details</h3>
+                                <table class="table table-borderless">
+                                
+                                    <tbody>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>Vaccination-Center :</td>
+                                            <td>Swetha Hospitals</td>
+                                
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>Phone Number :</td>
+                                            <td>9491728288</td>
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>Address :</td>
+                                            <td>7-G brundavanam Colony</td>
+                                
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>City :</td>
+                                            <td>Hyderabad</td>
+                                
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>State :</td>
+                                            <td>Telangana</td>
+                                
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>Opening-Time :</td>
+                                            <td>9:30 AM</td>
+                                        
+                                        </tr>
+                                        <tr style="color:aliceblue;text-align: center;">
+                                            <td>Closing-Time :</td>
+                                            <td>11:30 PM</td>
+                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <!--<td><button type="button" class="btn btn-primary btn-block" onclick="openForm()"></button></td>-->
+                    
+                    </div>
+                    <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
+                    
+                        <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="">
+                            <h2 class="faq-question" itemprop="name" style="text-align: center;color:white;"><b><i
+                                        class="fas fa-hospital" style="color:white;"></i>&nbsp;&nbsp;Sunny Hospitals</b></h2>
+                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <div itemprop="text">
+                                    <h3 style="text-align: center;color:white;font-weight: bold;">Details</h3>
+                                    <table class="table table-borderless">
+                    
+                                        <tbody>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>Vaccination-Center :</td>
+                                                <td>Sunny Hospitals</td>
+                    
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>Phone Number :</td>
+                                                <td>8341069939</td>
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>Address :</td>
+                                                <td>near,2-Town Police-Station</td>
+                    
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>City :</td>
+                                                <td>Kakinada</td>
+                    
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>State :</td>
+                                                <td>Andhra Pradesh</td>
+                    
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>Opening-Time :</td>
+                                                <td>8:30 AM</td>
+                                            
+                                            </tr>
+                                            <tr style="color:aliceblue;text-align: center;">
+                                                <td>Closing-Time :</td>
+                                                <td>9:30 PM</td>
+                                            
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--<td><button type="button" class="btn btn-primary btn-block" onclick="openForm()"></button></td>-->
+                    
+                    </div>
+        </div>
+    </div>
+    
+    <div id="googleMap" style="width:75%;height:690px;float:right;">
 
-</div>
+
+    </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
-<script>
-    function openForm() {
-            document.getElementById("myForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
-</script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
+    <script>
+       $(document).ready(function () {
+            $(".faqs-container .faq-singular:first-child").addClass("active").children(".faq-answer").slideDown();//Remove this line if you dont want the first item to be opened automatically.
+            $(".faq-question").on("click", function () {
+                if ($(this).parent().hasClass("active")) {
+                    $(this).next().slideUp();
+                    $(this).parent().removeClass("active");
+                }
+                else {
+                    $(".faq-answer").slideUp();
+                    $(".faq-singular").removeClass("active");
+                    $(this).parent().addClass("active");
+                    $(this).next().slideDown();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
