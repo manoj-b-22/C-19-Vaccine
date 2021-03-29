@@ -97,7 +97,14 @@ def faqs(request,pk):
 
 def nearby(request):
 
-    return render(request,'nearbyvc.html')
+    centre = models.TestCentre.objects.all()
+
+    if request.method == 'POST':
+        city = request.POST.get('city')
+        centre = models.TestCentre.objects.filter(city=city)
+
+    context={'centre':centre}
+    return render(request,'nearbyvc.html',context)
 
 @decorators.VC_required(login_url='loginvc')
 def dashboard(request,pk):

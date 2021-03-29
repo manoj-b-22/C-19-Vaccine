@@ -8,156 +8,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C19 Vaccine</title>
     <script src="https://kit.fontawesome.com/f8b62a635e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/nearby.css' %}">
-    <script src="{% static '/js/nearby.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static '/css/nearby.css' %}">
+    <script src="{% static '/js/nearby.js' %}"></script>    
 </head>
 
 <body style="background-color: black;">
-    <h1 style="text-align: center;background-color:black;color:white;margin-top: 0.5%;margin-bottom: 0.5%;"><b>Nearby
-            Vaccination Centres</b></h1>
+    <h1 style="text-align: center;background-color:black;color:white;margin-top: 0.5%;margin-bottom: 0.5%;"><b>NearbyVaccination Centres</b></h1>
     <div id="scr" style="width:25%;height:690px;border-left:solid 8px;border-radius: 5px ;border-color:#666666;float:left;background-color: black;float:left; max-height: 50%;
     overflow-y: scroll;">
-        <h1 style="text-align: center;background-color: black;color:aliceblue;border-top: solid 5px #666666;">
-            <b>Hospitals</b></h1>
+        <h1 style="text-align: center;background-color: black;color:aliceblue;border-top: solid 5px #666666;"><b>Vaccination Centres</b></h1>
+        {% for cen in centre %}
         <div class="container-fluid">
-                    <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
-                    
-                        <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="">
-                            <h2 class="faq-question" itemprop="name" style="text-align: center;color:white;"><b><i class="fas fa-hospital-user" style="color:white;"></i>&nbsp;&nbsp;Swetha Hospitals</b></h2>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div itemprop="text">
-                                <h3 style="text-align: center;color:white;font-weight: bold;">Details</h3>
-                                <table class="table table-borderless">
-                                
-                                    <tbody>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>Vaccination-Center :</td>
-                                            <td>Swetha Hospitals</td>
-                                
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>Phone Number :</td>
-                                            <td>9491728288</td>
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>Address :</td>
-                                            <td>7-G brundavanam Colony</td>
-                                
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>City :</td>
-                                            <td>Hyderabad</td>
-                                
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>State :</td>
-                                            <td>Telangana</td>
-                                
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>Opening-Time :</td>
-                                            <td>9:30 AM</td>
-                                        
-                                        </tr>
-                                        <tr style="color:aliceblue;text-align: center;">
-                                            <td>Closing-Time :</td>
-                                            <td>11:30 PM</td>
-                                        
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                
-                                </div>
-                            </div>
+            <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
+                <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h2 class="faq-question" itemprop="name" style="text-align: center;color:white;"><b><i class="fas fa-hospital-user" style="color:white;"></i>&nbsp;&nbsp;{{cen.name}}</b></h2>
+                    <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <h3 style="text-align: center;color:white;font-weight: bold;">Details</h3>
+                            <table class="table table-borderless">                                
+                                <tbody>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>Phone Number :</td>
+                                        <td>{{cen.phone_no}}</td>
+                                    </tr>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>Address :</td>
+                                        <td>{{cen.address}}</td>
+                                    </tr>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>City :</td>
+                                        <td>{{cen.city}}</td>
+                                    </tr>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>State :</td>
+                                        <td>{{cen.state}}</td>        
+                                    </tr>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>Opening-Time:</td>
+                                        <td>{{cen.active_time_from | time}}</td>        
+                                    </tr>
+                                    <tr style="color:aliceblue;text-align: center;">
+                                        <td>Closing-Time:</td>
+                                        <td>{{cen.active_time_to | time}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!--<td><button type="button" class="btn btn-primary btn-block" onclick="openForm()"></button></td>-->
-                    
                     </div>
-                    <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
-                    
-                        <div class="faq-singular" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="">
-                            <h2 class="faq-question" itemprop="name" style="text-align: center;color:white;"><b><i
-                                        class="fas fa-hospital" style="color:white;"></i>&nbsp;&nbsp;Sunny Hospitals</b></h2>
-                            <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <div itemprop="text">
-                                    <h3 style="text-align: center;color:white;font-weight: bold;">Details</h3>
-                                    <table class="table table-borderless">
-                    
-                                        <tbody>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>Vaccination-Center :</td>
-                                                <td>Sunny Hospitals</td>
-                    
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>Phone Number :</td>
-                                                <td>8341069939</td>
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>Address :</td>
-                                                <td>near,2-Town Police-Station</td>
-                    
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>City :</td>
-                                                <td>Kakinada</td>
-                    
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>State :</td>
-                                                <td>Andhra Pradesh</td>
-                    
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>Opening-Time :</td>
-                                                <td>8:30 AM</td>
-                                            
-                                            </tr>
-                                            <tr style="color:aliceblue;text-align: center;">
-                                                <td>Closing-Time :</td>
-                                                <td>9:30 PM</td>
-                                            
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                    
-                                </div>
-                            </div>
-                        </div>
-                        <!--<td><button type="button" class="btn btn-primary btn-block" onclick="openForm()"></button></td>-->
-                    
-                    </div>
+                </div>      
+            </div>            
         </div>
+        {% endfor %}
     </div>
     
-    <div id="googleMap" style="width:75%;height:690px;float:right;">
-
-
-    </div>
-
-
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
-    <script>
-       $(document).ready(function () {
-            $(".faqs-container .faq-singular:first-child").addClass("active").children(".faq-answer").slideDown();//Remove this line if you dont want the first item to be opened automatically.
-            $(".faq-question").on("click", function () {
-                if ($(this).parent().hasClass("active")) {
-                    $(this).next().slideUp();
-                    $(this).parent().removeClass("active");
-                }
-                else {
-                    $(".faq-answer").slideUp();
-                    $(".faq-singular").removeClass("active");
-                    $(this).parent().addClass("active");
-                    $(this).next().slideDown();
-                }
-            });
-        });
-    </script>
+    <div id="googleMap" style="width:75%;height:690px;float:right;"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
 </body>
 
 </html>
