@@ -99,11 +99,10 @@ def nearby(request):
 
     centre = models.TestCentre.objects.all()
 
-    if request.method == 'POST':
-        city = request.POST.get('city')
-        centre = models.TestCentre.objects.filter(city=city)
+    myFilter = filters.VCFilter(request.GET,queryset=centre)
+    centre = myFilter.qs
 
-    context={'centre':centre}
+    context={'centre':centre,'filter':myFilter}
     return render(request,'nearbyvc.html',context)
 
 @decorators.VC_required(login_url='loginvc')

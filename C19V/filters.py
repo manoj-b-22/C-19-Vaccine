@@ -21,3 +21,8 @@ class PatientFilter(django_filters.FilterSet):
         model=models.VaccinatedPerson
         fields=['name']       
         
+class VCFilter(django_filters.FilterSet):
+    city = CharFilter(field_name='city',lookup_expr='icontains')
+    class Meta:
+        model=models.TestCentre
+        fields=['city']       
