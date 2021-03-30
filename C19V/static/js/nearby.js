@@ -13,6 +13,31 @@ $(document).ready(function() {
     });
 });
 
+function initMap() {
+    const map = new google.maps.Map(document.getElementById("googleMap"), {
+      zoom: 5,
+      center: { lat: 28.7041, lng: 77.1025 },
+    });
+    const geocoder = new google.maps.Geocoder();
+    geocodeAddress(geocoder, map);
+  }
+  function geocodeAddress(geocoder, resultsMap) {
+    const address = document.getElementById("address").value;
+    geocoder.geocode({ address: address }, (results, status) => {
+      if (status === "OK") {
+        resultsMap.setCenter(results[0].geometry.location);
+        resultsMap.setZoom(8);
+        new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location,
+          animation: google.maps.Animation.BOUNCE,
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+
 function myMap() {
     var mapProp = {
         center: new google.maps.LatLng(17.387140, 78.491684),
@@ -26,7 +51,7 @@ function myMap() {
         animation: google.maps.Animation.BOUNCE
     });
     var infowindow = new google.maps.InfoWindow({
-        content: "Shwetha-Hospitals"
+        content: 'Vaccination Centre'
     });
 
     google.maps.event.addListener(marker, 'click', function () {
