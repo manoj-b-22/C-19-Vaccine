@@ -40,7 +40,7 @@ function initMap() {
 
 function myMap() {
     var mapProp = {
-        center: new google.maps.LatLng(17.387140, 78.491684),
+        center: new google.maps.LatLng(28.7041, 77.1025),
         zoom: 5,
     };
 
