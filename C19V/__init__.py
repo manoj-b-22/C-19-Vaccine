@@ -1,0 +1,1 @@
+default_app_config = 'C19V.apps.C19VConfig'
