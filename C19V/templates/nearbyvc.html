@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/f8b62a635e.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
 
     <link rel="stylesheet" type="text/css" href="{% static '/css/nearby.css' %}">
     <script src="{% static '/js/nearby.js' %}"></script>    
@@ -21,7 +21,8 @@
     <form action="" method="GET">
         <div class="search-container" style="text-align: center;margin-right: 35px;margin-bottom: 10px;">
         <label for="name"><strong class='text-white'>City:&nbsp</strong></label>
-        {{filter.form.city}}				
+        {{filter.form.city}}
+        <p id="address" style="display: none;" >{{ city }}</p>				
             <button class="btn btn-dark  btn-sm pd" type="search" style="margin-bottom: 5px;"><b>Search&nbsp<i class="fa fa-search"></i></b></button>
         </div>
     </form>
@@ -73,7 +74,7 @@
     </div>
     
     <div id="googleMap" style="width:75%;height:690px;float:right;"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc&callback=initMap&libraries=&v=weekly" async defer ></script>
 </body>
 
 </html>
