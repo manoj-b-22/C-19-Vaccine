@@ -101,7 +101,10 @@ def nearby(request):
 
     myFilter = filters.VCFilter(request.GET,queryset=centre)
     centre = myFilter.qs
-    city = centre[0].city
+    if len(centre)==0:
+        city = 'India'
+    else :    
+        city = centre[0].city
 
     context={'centre':centre,'filter':myFilter,'city':city}
     return render(request,'nearbyvc.html',context)
