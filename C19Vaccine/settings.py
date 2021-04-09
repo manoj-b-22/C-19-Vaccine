@@ -128,3 +128,10 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR,'C19V/static') ]
 
 # GOOGLE_MAPS_API_KEY = "AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'cvaccine49@gmail.com'
+EMAIL_HOST_PASSWORD = 'bada@123'
