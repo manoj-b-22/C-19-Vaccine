@@ -12,7 +12,7 @@
 <script src="{% static '/js/faq.js' %}"></script>
 <br>
 <center>
-    <h2 id="header">Frequently Asked Questions</h2>
+    <h2 id="header"><b>Frequently Asked Questions&nbsp;<i class="far fa-question-circle"></i></b></h2>
 </center>
 <br>
 <div class="faqs-container" itemscope itemtype="https://schema.org/FAQPage">
@@ -24,11 +24,11 @@
                 {{faq.answer}}
                 {% if User != 'Patient' %}
                 <button type="button" class="btn btn-outline-dark btn-sm" style="float:right;margin-top:1%;">
-                    <a href="{% url 'update_faq' person.id faq.id %}" class="text-warning"><b>Update Faq</b></a>
+                    <a href="{% url 'update_faq' person.id faq.id %}" style="color:black;text-decoration: none;"><b>Update Faq &nbsp;<i class="fas fa-pencil-alt"></i></b></a>
                 </button>
                 <button type="button" class="btn btn-outline-dark btn-sm"
                     style="float:right;margin-right: 1%;margin-top:1%;" onclick="openForm()">
-                    <b>Delete Faq</b>
+                    <b>Delete Faq &nbsp;<i class="fas fa-trash-alt"></i></b>
                 </button>
                 <div class="form-popup" id="myForm" style="margin-right: 38%;margin-bottom:20%;border-style: double;background-color: black;color:aliceblue;border-radius:5px;"><i class="fas fa-times" onclick="closeForm()" style="position: absolute;margin-top:1%;margin-right: 1%;
                  right:0px;"></i><br>
@@ -58,7 +58,7 @@
 <br>
 {% if User == 'VC' %}
 <div style="text-align: center;"><button type="button" class="btn btn-dark">
-    <a href="{% url 'add_faq' person.id %}" class="text-info"><b>Add Faq</b></a>
+    <a href="{% url 'add_faq' person.id %}" style="color:white;text-decoration: none;"><b>Add Faq &nbsp;<i class="fas fa-plus"></i></b></a>
 </button></div>
 <script>
     function openForm() {
@@ -71,6 +71,7 @@
 </script>
 {%  else  %}
 <div class="pl-4" style="text-align: center;margin-top:20%;">
+
     <h3> For any Further Information Contact- {{centre.name}} </h3><br>
  <div class="container">
     <table class="table table-dark table-hover">
@@ -92,6 +93,8 @@
  </div>
     
 </div>
+
+
 {% endif %}
 
 

@@ -50,19 +50,13 @@
 		<h5>PATIENTS:</h5>
 		<hr>
 		<div class="card card-body">
-					<form action="" method="GET">
-						<div class="search-container" style="text-align: center;margin-right: 35px;margin-bottom: 10px;">
-						<label for="name"><strong>Patient Name:&nbsp</strong></label>
-						{{filter.form.name}}
-							
-							<button class="btn btn-dark  btn-sm pd" type="search" style="margin-bottom: 5px;"><b>Search&nbsp<i class="fa fa-search"></i></b></button>
-						</div>
-						
-					</form>
-				
-				
-				<!--<input type="submit" name='Search'><a class="btn btn-dark  btn-sm btn-block" href="">Search for Patient Details</a>-->
-			
+			<form action="" method="GET">
+				<div class="search-container" style="text-align: center;margin-right: 35px;margin-bottom: 10px;">
+				<label for="name"><strong>Patient Name:&nbsp</strong></label>
+				{{filter.form.name}}				
+					<button class="btn btn-dark  btn-sm pd" type="search" style="margin-bottom: 5px;"><b>Search&nbsp<i class="fa fa-search"></i></b></button>
+				</div>
+			</form>
 			<table class="table table-sm">
 				<tr>
 					<th></th>
@@ -75,7 +69,6 @@
 						<td>{{pat.name}}</td>	
 					</tr>
 				{% endfor %}
-
 			</table>
 		</div>
 	</div>
@@ -84,7 +77,7 @@
 		<h5>LAST 5 Vaccinated people</h5>
 		<hr>
 		<div class="card card-body">
-			<a class="btn btn-dark  btn-sm btn-block" href="{% url 'register' person.id %}">Add a Person</a>
+			<a class="btn btn-dark  btn-sm btn-block" href="{% url 'register' person.id %}"><b>Add a Person &nbsp;<i class="fas fa-user-friends"></i></b></a>
 			<table class="table table-sm">
 				<tr>
 					<th>Name</th>
@@ -104,13 +97,13 @@
                         <td>{{patient.phone_no}}</td>
                         <td>{{patient.date_created | date}}</td>
 						<td>{{patient.date_created | time}}</td>
-						<td><a class="btn btn-sm btn-info" href="{% url 'update_person' person.id patient.id %}" >Update</a></td>
+						<td><a class="btn btn-sm btn-info" href="{% url 'update_person' person.id patient.id %}" >Update &nbsp;<i class="fas fa-pencil-alt"></i></a></td>
 					</tr>
 				{% endfor %}
 			</table>
 		</div>
 	</div>
-
+	
 </div>
 
 {% endblock %}
