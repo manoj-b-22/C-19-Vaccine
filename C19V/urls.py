@@ -29,9 +29,5 @@ urlpatterns = [
     path('vc/report/showpatient/<str:pk>/',views.show,name='show_patient'),
     path('statistics/showcentre/<str:pk>/',views.showvc,name='show_centre'),
     path('vc/register/<str:user>/',views.registerCentre,name='create_centre'),
-    path('reset_password/',auth_views.PasswordResetView.as_view(template_name='password_reset.html'),name="reset_password"),
-    path('reset_password_sent/',auth_views.PasswordResetDoneView.as_view(template_name='password_reset_sent.html'),name="reset_password_done"),
-    path('reset_/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_form.html'),name="reset_password_confirm"),
-    path('reset_password_complete/',auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_done.html'), name="reset_password_complete"),
-
+   
 ]
