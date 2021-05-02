@@ -3,6 +3,8 @@ from django.db.models.deletion import CASCADE
 from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
+
+# model for Vaccination Centre
 class TestCentre(models.Model):
     user = models.OneToOneField(User,on_delete=CASCADE)
     name = models.CharField(max_length=50,null=True)
@@ -19,6 +21,7 @@ class TestCentre(models.Model):
         return self.name
     
 
+# model for Vaccinated Person
 class VaccinatedPerson(models.Model):
 
     GENDER_CHOICES = (('M','Male'),('F','Female'))
@@ -41,6 +44,7 @@ class VaccinatedPerson(models.Model):
     def __str__(self):
         return self.name    
 
+# model for Status of a Vaccinated Person
 class Status(models.Model):
     STATUS = (('Good','Feeling good'),('Ok','Feeling somewhat good'),('Bad','Feeling Bad'))
 
@@ -52,6 +56,7 @@ class Status(models.Model):
     def __str__(self):
         return self.person.name+" "+self.status
 
+# model for Frequently Asked Questions
 class FAQ(models.Model):
     question = models.TextField(max_length=100)
     answer = models.TextField(max_length=500)

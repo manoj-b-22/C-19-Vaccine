@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from django.contrib.admin import widgets
 
+# Form for VaccinatedPerson model
 class PersonForm(ModelForm):
     class Meta:
         model = models.VaccinatedPerson
@@ -19,6 +20,7 @@ class PersonForm(ModelForm):
             'dob': forms.DateInput(attrs={'type': 'date'}),
         }
 
+# Form for TestCentre model
 class TestCentreForm(ModelForm):
     class Meta:
         model = models.TestCentre
@@ -34,16 +36,19 @@ class TestCentreForm(ModelForm):
             'active_time_to': widgets.AdminTimeWidget(),
         }
 
+# Form for Status model
 class StatusForm(ModelForm):
     class Meta:
         model = models.Status
         fields='__all__'
 
+# Form for FAQ model
 class FAQForm(ModelForm):
     class Meta:
         model = models.FAQ
         fields='__all__'
 
+# Form for User model
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User

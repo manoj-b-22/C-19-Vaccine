@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'C19V.apps.C19VConfig',
-    'django_filters',
-#   'django_google_maps'
+    'django_filters',        # Django-filter is a reusable Django application for allowing users to filter querysets dynamically.
+#   'django_google_maps'     # It is a simple application that provides the basic hooks into google maps V3 api for use in Django models from Django version 1.11+.
 ]
 
 MIDDLEWARE = [
@@ -129,6 +129,7 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR,'C19V/static') ]
 
 # GOOGLE_MAPS_API_KEY = "AIzaSyDRY_Rg4W_hjC8S-HcEFrHJuoOhneSm3oc"
 
+# Credentials For Reset Password
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'

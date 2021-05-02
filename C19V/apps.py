@@ -4,5 +4,5 @@ from django.apps import AppConfig
 class C19VConfig(AppConfig):
     name = 'C19V'
 
-  # def ready(self):
-   #     import C19V.signals
+    def ready(self):
+        import C19V.signals   # Signals For  C19V Users
