@@ -97,7 +97,7 @@ def faqs(request,pk):
     person = models.VaccinatedPerson.objects.get(id=pk)
     centre = models.TestCentre.objects.get(name=person.centre)
     faq = models.FAQ.objects.all()
-
+                 # block attribute is for navbar.html since the page faq.html extends navbar.html
     context={'nbar':'faq','User':'Patient','block':'Patient','faqs':faq,'person':person,'centre':centre}
     return render(request,'faq.html',context)    
 
@@ -214,7 +214,7 @@ def faqsvc(request,pk):
         faqd = models.FAQ.objects.get(id=no)
         faqd.delete()
         return redirect('faqVC',pk=pk)
-
+                # block attribute is for navbar.html since the page faq.html extends navbar.html
     context={'nbar':'faqVC','User':'VC','block':'VC','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
