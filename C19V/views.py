@@ -98,7 +98,7 @@ def faqs(request,pk):
     centre = models.TestCentre.objects.get(name=person.centre)
     faq = models.FAQ.objects.all()
 
-    context={'nbar':'faq','User':'Patient','faqs':faq,'person':person,'centre':centre}
+    context={'nbar':'faq','User':'Patient','block':'Patient','faqs':faq,'person':person,'centre':centre}
     return render(request,'faq.html',context)    
 
 # To show nearby vaccination centres
@@ -215,7 +215,7 @@ def faqsvc(request,pk):
         faqd.delete()
         return redirect('faqVC',pk=pk)
 
-    context={'nbar':'faqVC','User':'VC','faqs':faq,'person':person}
+    context={'nbar':'faqVC','User':'VC','block':'VC','faqs':faq,'person':person}
     return render(request,'faq.html',context)    
 
 # to add an FAQ
@@ -399,7 +399,7 @@ def registerVC(request):
         form = forms.CreateUserForm(request.POST)
         form.is_staff=True
         if form.is_valid():
-            user.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)       # if the credentials are correct, we are sending the success message 
             return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))
