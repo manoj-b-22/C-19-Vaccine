@@ -1,4 +1,5 @@
 {% load static %}
+<!-- This is the Patient Login Page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@
       <div class="login-or">
         <hr class="hr-or">
       </div>
-
+          <!-- This is the form for Login -->
       <form role="form" method='POST' action=''>
         {% csrf_token %}
         <div class="form-group">
@@ -55,6 +56,7 @@
           <b>Log In</b>
         </button>
       </form>
+      <!-- This is to display error message while logging in -->
       {% for mess in messages %}
       <p>{{mess}}</p>
       {% endfor %}

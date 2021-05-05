@@ -1,5 +1,5 @@
 {% load static %}
-
+<!-- This page shows details of the Vaccinated Person(Patient) -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static '/css/patient_home.css'%}">
 <centre>
@@ -92,8 +92,9 @@
             <div class="col-sm-3">
               <h6 class="mb-0 pl-4">Previous Status</h6>
             </div>
+                  <!-- This status shows the latest updated status of the current person -->
             <div class="col-sm-9 pl-4 text-secondary">
-              {{status.status}}
+              {{status.status}}                
             </div>
           </div>
         </div>

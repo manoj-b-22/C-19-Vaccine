@@ -1,17 +1,18 @@
 {% load static %}
-
+<!-- This is to add or update an FAQ -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script><br>
 
-
+<!-- the state variable below stores the information whether to add or update an FAQ -->
 {% if state == 'add' %}
 <h1 style="font-family: sans-serif;text-align: center;"><b>Add FAQ</b></h1>
 {% else %}
 <h1 style="font-family: sans-serif;text-align: center;"><b>Update FAQ</b></h1>
 {% endif %}
 <div class="container" style="text-align: center;">
+        <!-- This is an FAQ Form -->
     <form action='' method='POST'>
         {% csrf_token %}
         <table class="table table-dark table-hover table-bordered">

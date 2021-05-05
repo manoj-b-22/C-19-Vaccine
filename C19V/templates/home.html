@@ -1,4 +1,5 @@
 {% load static %}
+<!-- This is the main page of the website  -->
 <html>
 <head>
 	<meta charset="utf-8">
@@ -13,6 +14,7 @@
 </head>
 <body onresize='_pexresize()'>
 	<canvas id='canvas' width='1280' height='720'></canvas><br><br>
+    <!-- This is the button to go to login page -->
   <button type="button" class="btn btn-outline-dark btn-block" style="color:white;font-family: sans-serif;border:8px solid white;"><a style="color: #0060B6;
     text-decoration: none;"class='text-white' href="{% url 'login' %}"><h2><b>Get-Started with C-19 Vaccine &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-alt-circle-right"></i></b></h2></a></button><br>
   <h6 style="text-align: center;color:white;">Copyright &copy; 2021 C-19 Vaccine.All Rights Reserved.</h6>
@@ -21,8 +23,8 @@
 		canvas {background:#000;display:block;cursor: none}
     @import url('https://fonts.googleapis.com/css?family=Codystar:300&display=swap');
 
-
   </style>
+    <!-- Javascript code for the game in the main page -->
   <script>
     "use strict"
       var stage = {

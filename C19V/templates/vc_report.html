@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% load static %}
-
+<!-- This page is to show the Vaccination Report of a Centre -->
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/vc_report.css'%}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -50,6 +50,7 @@
 		<h5>PATIENTS:</h5>
 		<hr>
 		<div class="card card-body">
+				<!-- This is the custom filter form from django_filter -->
 			<form action="" method="GET">
 				<div class="search-container" style="text-align: center;margin-right: 35px;margin-bottom: 10px;">
 				<label for="name"><strong>Patient Name:&nbsp</strong></label>
@@ -57,6 +58,7 @@
 					<button class="btn btn-dark  btn-sm pd" type="search" style="margin-bottom: 5px;"><b>Search&nbsp<i class="fa fa-search"></i></b></button>
 				</div>
 			</form>
+				<!-- The table below shows the results from the search filter above -->
 			<table class="table table-sm">
 				<tr>
 					<th></th>
@@ -72,7 +74,7 @@
 			</table>
 		</div>
 	</div>
-
+			<!-- The table below shows the details of the last five vaccinated persons who took vaccine in that centre -->
 	<div class="col-md-7">
 		<h5>LAST 5 Vaccinated people</h5>
 		<hr>

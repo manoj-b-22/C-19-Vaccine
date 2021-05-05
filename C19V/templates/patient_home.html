@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% load static %}
-
+<!-- This is to show the details of the Vacinated Person -->
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/patient_home.css'%}">
 <centre>
@@ -102,6 +102,7 @@
           <div class="col-sm-3">
             <h6 class="mb-0 pl-4">Health Progress(so far)</h6>
           </div>
+            <!-- The progress bar shows the percentage of corresponding health condition of all time after vaccination -->
           <div class="progress col-sm-9">
             <div class="progress-bar bg-success" style="width:{{green}}%">{{green}}%</div>
             <div class="progress-bar bg-warning" style="width:{{yellow}}%">{{yellow}}%</div>

@@ -1,11 +1,13 @@
 {% load static %}
-
+    <!-- This page is to add or update Patient Registeration Details -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <div class="container">
     <br>
+        <!-- update variable shows whether this is an update or not -->
     <h2 style="text-align:center;">{% if update %}Update a Vaccinated Person{% else %} Add a Vaccinated Person{% endif %}</h2><br><br>
+        <!-- Patient Registration Form -->
     <form action="" method="POST">
         {% csrf_token %}
 
@@ -38,8 +40,10 @@
             </tr>
             <div style="display: none;">
                 <label for="centre"><b>Vaccination Centre -</b> </label>
+                    <!-- The Patient's Vaccination Centre is decided based on which centre he/she vaccinated  -->
                 {{ form.centre }}<br><br>
                 <label for="user"><b>User -</b> </label>
+                    <!-- the model TestCentre links itself to User model. We choose to not show this to user to avoid exploitation/fraud -->
                 {{ form.user }}<br><br>
             </div>
         </tbody>
