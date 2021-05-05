@@ -399,7 +399,9 @@ def registerVC(request):
         form = forms.CreateUserForm(request.POST)
         form.is_staff=True
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.is_staff=True
+            user.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account successfully created for '+username)       # if the credentials are correct, we are sending the success message 
             return HttpResponseRedirect(reverse('create_centre',kwargs={'user':user.id}))
