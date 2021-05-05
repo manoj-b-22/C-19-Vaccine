@@ -208,7 +208,7 @@ def faqsvc(request,pk):
 
     person = models.TestCentre.objects.get(id=pk)
     faq = models.FAQ.objects.all()
-                # to delete an FAQ
+            # to delete an FAQ
     if request.method == 'POST':
         no = request.POST.get('id')
         faqd = models.FAQ.objects.get(id=no)
