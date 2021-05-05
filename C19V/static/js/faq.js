@@ -1,3 +1,4 @@
+// JQuery javascript code for FAQ Sliding Animation
 $(document).ready(function() {
     $(".faq-question").on("click", function() {
         if ($(this).parent().hasClass("active")) {
