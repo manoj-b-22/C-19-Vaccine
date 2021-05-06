@@ -1,4 +1,5 @@
 {% load static %}
+<!-- This is Page to Register Patient's Username and Password -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -9,6 +10,7 @@
             <img src="{% static '/images/pat.png' %}" class="rounded-circle" alt="Corona1" width="150" height="150">
         </div>
     </div>
+            <!-- Vaccinated Person(User) Registration Form -->
     <form action='' method='POST'>
         {% csrf_token %}
       
@@ -42,6 +44,8 @@
                             <strong>Sign Up</strong>
                         </button>&nbsp&nbsp&nbsp&nbsp&nbsp
                     <div style="display:none;">
+                                <!-- is_staff attribute decides whether the user is vaccinated person or vaccination centre. 
+                                        We decide that so no need for the patient to decide. -->
                         <label for="is_staff"><strong>is_staff-</strong> </label>
                         {{ form.is_staff }}
                     </div>

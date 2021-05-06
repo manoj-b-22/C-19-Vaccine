@@ -1,3 +1,4 @@
+// JQuery javascript code for FAQ Sliding Animation
 $(document).ready(function() {
     $(".faq-question").on("click", function() {
         if ($(this).parent().hasClass("active")) {
@@ -12,6 +13,7 @@ $(document).ready(function() {
     });
 });
 
+// Code for Google Geocoder API
 function initMap() {
     const map = new google.maps.Map(document.getElementById("googleMap"), {
         zoom: 5,
@@ -38,6 +40,7 @@ function geocodeAddress(geocoder, resultsMap) {
     });
 }
 
+// Code for Google Maps API
 function myMap() {
     var mapProp = {
         center: new google.maps.LatLng(28.7041, 77.1025),

@@ -1,4 +1,5 @@
 {% load static %}
+<!-- This is Page to Register Vaccination Centre's Username and Password -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +39,7 @@
       </div>
 
       <div class="signupbox">
+        <!-- Vaccination Centre(User) Registration Form -->
         <form role="form" method="POST" action='' >
           {% csrf_token %}
           <h3 style="text-align: center;"><b>Vaccination-Centre Registration Form</b></h3>
@@ -61,6 +63,8 @@
                 <tr>
                   <td>
                     <div style="display: none;">
+                                <!-- is_staff attribute decides whether the user is vaccinated person or vaccination centre. 
+                                        We decide that so no need for the vaccination centre to decide. -->
                       <label for="is_staff"><b> is_staff-</b> </label>
                       {{ form.is_staff }}<br><br>
                     </div>
@@ -73,6 +77,7 @@
               </tbody>
             </table>
         </form>
+            <!-- To display any form errors -->
         {{form.errors}}
       </div>
       <div>

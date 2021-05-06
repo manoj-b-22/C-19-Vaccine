@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% load static %}
-
+<!-- This Page shows the Statistics of the Vaccinated People -->
 {% block content %}
 <link rel='stylesheet' href="{% static '/css/statistics.css' %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -9,7 +9,7 @@
 <script src="{% static '/js/statistics.js' %}"></script>
 <div class="container" style="font-family: sans-serif;"><br>
     <h1 class="text-center"><b>Statistics <i class="fas fa-chart-line"></i></b></h1><br>
-
+        <!-- This is the custom filter form from django_filter -->
     <form method='GET'>
         <table class="table table-dark table-striped">
            
@@ -35,6 +35,7 @@
                     </td>
                 </tr></tbody></table>
     </form>
+        <!-- the variable people shows the total count of the results from the above filter -->
     <h4 class="text-center">Search Results: {{people}}</h4>
 </div>
 <div class="container" style="font-family: sans-serif;margin-top: 6%;margin-left: 30%;">
@@ -44,6 +45,7 @@
             <li><span>50%</span></li>
             <li><span>0%</span></li>
         </ul>
+        <!-- This is to plot bar graph of each centre's contribution from the above search -->
         <ul class="bars">
         {% for cen in centre %}
             {% for per in percent %}

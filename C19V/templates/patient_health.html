@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% load static %}
-
+<!-- This page shows the Health Report of an Individual -->
 {% block content %}
 <link rel="stylesheet" href='{% static "css/updatestatus.css" %}'>
 <script src="{% static '/js/status.js' %}"></script>
@@ -38,7 +38,7 @@
             <button type="button" class="btn btn-dark open-button" onclick="openForm()">Update Status</button>
         </div>
     </div>
-
+<!-- Form to update the health status -->
 <div class="form-popup" id="myForm">
     <form action="" method='POST' class="form-container">
         {% csrf_token %}
