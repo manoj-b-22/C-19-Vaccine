@@ -35,7 +35,7 @@ class VaccinatedPerson(models.Model):
     city = models.CharField(max_length=50,null=True)
     state = models.CharField(max_length=50,null=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    centre = models.CharField(max_length=50,null=True)
+    centre = models.CharField(max_length=50,null=True) # TestCentre's name
 
     @property
     def age(self):
