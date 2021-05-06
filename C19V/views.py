@@ -104,8 +104,7 @@ def faqs(request,pk):
 # To show nearby vaccination centres
 def nearby(request):
 
-    centre = models.TestCentre.objects.all()
-
+    centre = models.TestCentre.objects.all()[1:]
     myFilter = filters.VCFilter(request.GET,queryset=centre)          # custom filter from filters.py using django_filter
     centre = myFilter.qs
     if len(centre)==0:
