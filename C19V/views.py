@@ -70,7 +70,7 @@ def stats(request,pk):
     myFilter = filters.PersonFilter(request.GET,queryset=people)    # Using custom filter from filters.py using django_filter
     people = myFilter.qs
 
-    centres = models.TestCentre.objects.all() 
+    centres = models.TestCentre.objects.all()[1:]
     city = myFilter.form.cleaned_data['city']
     state = myFilter.form.cleaned_data['state']
 
@@ -260,7 +260,7 @@ def statsVC(request,pk):
 
     # Calculating the contribution of each centre from the total count
     percent = []
-    centres = models.TestCentre.objects.all()
+    centres = models.TestCentre.objects.all()[1:]
     city = myFilter.form.cleaned_data['city']
     state = myFilter.form.cleaned_data['state']
     if city !=None and len(city)>0:
