@@ -66,19 +66,11 @@ def stats(request,pk):
 
     person = models.VaccinatedPerson.objects.get(id=pk)
 
-    people = models.VaccinatedPerson.objects.all()
-    myFilter = filters.PersonFilter(request.GET,queryset=people)    # Using custom filter from filters.py using django_filter
+    mypeople = models.VaccinatedPerson.objects.all()
+    myFilter = filters.PersonFilter(request.GET,queryset=mypeople)    # Using custom filter from filters.py using django_filter
     people = myFilter.qs
 
     centres = models.TestCentre.objects.all()[1:]
-    city = myFilter.form.cleaned_data['city']
-    state = myFilter.form.cleaned_data['state']
-
-    if city != None and len(city)>0:
-        centres = centres.filter(city=city)
-    if state != None and len(state)>0:
-        centres = centres.filter(state=state)   
-              
     # Calculating the contribution of each centre from the total count   
     percent=[]
     for cen in centres:
@@ -261,12 +253,6 @@ def statsVC(request,pk):
     # Calculating the contribution of each centre from the total count
     percent = []
     centres = models.TestCentre.objects.all()[1:]
-    city = myFilter.form.cleaned_data['city']
-    state = myFilter.form.cleaned_data['state']
-    if city !=None and len(city)>0:
-        centres = centres.filter(city=city)
-    if state !=None and len(state)>0:
-        centres = centres.filter(state=state)
 
     for cen in centres:
         k = people.filter(centre=cen.name).count()
