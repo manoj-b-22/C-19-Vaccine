@@ -75,7 +75,11 @@ def stats(request,pk):
     percent=[]
     for cen in centres:
         k = people.filter(centre=cen.name).count()
-        res = int(k/people.count()*100)
+        if people.count() == 0: # to avoid division with zero
+            d = 1    
+        else:
+            d = people.count()    
+        res = int(k/d*100)
         percent.append(res)
     people = people.count()        
 
@@ -256,7 +260,11 @@ def statsVC(request,pk):
 
     for cen in centres:
         k = people.filter(centre=cen.name).count()
-        res = int(k/people.count()*100)
+        if people.count() == 0:  # to avoid division with zero
+            d = 1
+        else:
+            d = people.count()    
+        res = int(k/d*100)
         percent.append(res)
     people = people.count()
 
