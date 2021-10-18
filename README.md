@@ -1,7 +1,7 @@
 # C-19-Vaccine
 
-manoj srinivas 
-manoj kumar
-jyothendranath
-srujan
-kranthi
+Manoj Srinivas B
+Sai Manoj Kumar P
+Jyothendranath T
+Jai Bala Srujan M
+Kranthi Kusal L
